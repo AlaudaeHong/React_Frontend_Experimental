@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, Header, Message } from "semantic-ui-react";
+import { Menu, Message } from "semantic-ui-react";
 
 class NavigationBar extends React.Component {
     constructor(props) {
