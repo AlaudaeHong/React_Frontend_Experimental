@@ -1,30 +1,29 @@
 import React, { Component } from "react";
-import NavigationBar from "./navigation";
+import Home from "./home";
+import About from "./about";
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { apiResponse: "" };
-    }
-    
-    callAPI() {
-        fetch("http://localhost:10000/testAPI")
-            .then((res) => res.text())
-            .then((res) => this.setState({ apiResponse: res }));
-    }
+import { Switch, Route } from "react-router-dom";
 
-    componentDidMount() {
-        this.callAPI();
-    }
-
-    render(){
-      return(
+function App() {
+    return (
         <div className="App">
-            <NavigationBar isLoggedIn={true} />
-            <p className="App-intro">{this.state.apiResponse}</p>
+            <Switch>
+                {/* <Route path="/db">
+                <DB />
+            </Route>
+            
+            <Route paht="/login">
+                <Login />
+            </Route> */}
+                <Route path="/about">
+                    <About />
+                </Route>
+                <Route path="/">
+                    <Home />
+                </Route>
+            </Switch>
         </div>
-      )
-    }
+    );
 }
 
 export default App;

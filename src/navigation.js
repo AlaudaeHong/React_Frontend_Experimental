@@ -43,14 +43,18 @@ class NavigationBar extends React.Component {
 
     render() {
         return (
-            <div>
-                <Message>A React & Express.js Project</Message>
+            <div className="Navigation">
+                <div className="Banner">
+                    <Message>
+                        <p> A React & Express.js Project By Yun Hong</p>
+                    </Message>
+                </div>
                 <Menu inverted>
-                    <Menu.Item header name="Welcome">
+                    <Menu.Item header name="Welcome" color="blue" active={true}>
                         Welcome to Yun Hong's Homepage
                     </Menu.Item>
                     <Menu.Item name="home" href="/" />
-                    <Menu.Item name="bio" href="/" />
+                    <Menu.Item name="about" href="/about" />
                     <Menu.Item name="experimental" href="/" />
                     <Menu.Item name="hobby" href="/" />
                     <Menu.Menu position="right">
