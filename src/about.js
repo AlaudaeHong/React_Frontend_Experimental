@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NavigationBar from "./navigation";
-import { Menu, Image, Grid, Header } from "semantic-ui-react";
+import { Menu, Image, Grid, Header, Container } from "semantic-ui-react";
 
 class About extends Component {
     constructor(props) {
@@ -28,30 +28,33 @@ class About extends Component {
         return (
             <div>
                 <NavigationBar isLoggedIn={true} />
-                <Grid celled>
-                    <Grid.Row>
-                        <Grid.Column width={13}>{content}</Grid.Column>
-                        <Grid.Column width={3}>
-                            <Menu secondary vertical>
-                                <Menu.Item
-                                    name="bio"
-                                    active={activeItem === "bio"}
-                                    onClick={this.handleItemClick}
-                                />
-                                <Menu.Item
-                                    name="resume"
-                                    active={activeItem === "resume"}
-                                    onClick={this.handleItemClick}
-                                />
-                                <Menu.Item
-                                    name="others"
-                                    active={activeItem === "others"}
-                                    onClick={this.handleItemClick}
-                                />
-                            </Menu>
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
+
+                <Container>
+                    <Grid celled>
+                        <Grid.Row>
+                            <Grid.Column width={12}>{content}</Grid.Column>
+                            <Grid.Column width={4}>
+                                <Menu pointing secondary vertical>
+                                    <Menu.Item
+                                        name="bio"
+                                        active={activeItem === "bio"}
+                                        onClick={this.handleItemClick}
+                                    />
+                                    <Menu.Item
+                                        name="resume"
+                                        active={activeItem === "resume"}
+                                        onClick={this.handleItemClick}
+                                    />
+                                    <Menu.Item
+                                        name="others"
+                                        active={activeItem === "others"}
+                                        onClick={this.handleItemClick}
+                                    />
+                                </Menu>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Container>
             </div>
         );
     }
@@ -70,7 +73,11 @@ function Resume() {
     return (
         <div>
             <h1>Resume</h1>
-            <Image src={ require ('./static/about/Resume1024_1.jpg') } size="huge" fluid />
+            <Image
+                src={require("./static/about/Resume1024_1.jpg")}
+                size="huge"
+                fluid
+            />
         </div>
     );
 }

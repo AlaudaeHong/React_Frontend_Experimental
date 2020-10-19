@@ -46,7 +46,11 @@ class NavigationBar extends React.Component {
             <div className="Navigation">
                 <div className="Banner">
                     <Message>
-                        <p> A React & Express.js Project By Yun Hong</p>
+                        <p>
+                            {" "}
+                            A React & Express.js Project By Yun Hong. This
+                            website is currently under construction
+                        </p>
                     </Message>
                 </div>
                 <Menu inverted>
