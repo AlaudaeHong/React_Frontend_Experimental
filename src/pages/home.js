@@ -1,16 +1,13 @@
 import React, { Component } from "react";
-import { Segment, Grid, Header, Container, Message } from "semantic-ui-react";
-import NavigationBar from "../components/navigation";
+import { Segment, Grid, Header, Container } from "semantic-ui-react";
+import { NavigationBar } from "../components/navigation";
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-    }
-
+    
     render() {
         return (
             <div className="App">
-                <NavigationBar isLoggedIn={true} />
+                <NavigationBar />
                 <Container>
                     <Grid celled>
                         <Grid.Row>

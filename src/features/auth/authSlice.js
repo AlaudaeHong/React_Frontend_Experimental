@@ -14,8 +14,6 @@ export const fetchAuthUser = createAsyncThunk("auth/check", async () => {
 });
 
 export const loginAuthUser = createAsyncThunk("auth/login", async (user) => {
-    console.log(JSON.stringify(user));
-
     const response = await fetch("/api/auth/login", {
         method: "POST",
         body: JSON.stringify(user),
@@ -29,9 +27,14 @@ export const loginAuthUser = createAsyncThunk("auth/login", async (user) => {
 });
 
 export const logoutAuthUser = createAsyncThunk("auth/logout", async () => {
+    console.log("logging out");
+
     const response = await fetch("/api/auth/logout", {
         method: "DELETE",
     });
+
+    const data = await response.json();
+    return data;
 });
 
 export const registerAuthUser = createAsyncThunk(
@@ -61,16 +64,24 @@ export const authSlice = createSlice({
         [fetchAuthUser.fulfilled]: (state, action) => {
             state.status = "loaded";
             state.user = action.payload;
+            console.log("fetched");
         },
-        [fetchAuthUser.rejected]: (state, action) => {
+        /* [fetchAuthUser.rejected]: (state, action) => {
             state.status = "failed";
-        },
+        }, */
         [registerAuthUser.fulfilled]: (state, action) => {
-            state.status = "loaded";
+            state.status = "idle";
             state.user = action.payload;
         },
         [loginAuthUser.fulfilled]: (state, action) => {
-            state.status = "loaded";
+            state.status = "idle";
+            state.user = action.payload;
+        },
+        [logoutAuthUser.pending]: (state, action) => {
+            state.status = "loading";
+        },
+        [logoutAuthUser.fulfilled]: (state, action) => {
+            state.status = "idle";
             state.user = action.payload;
         },
     },

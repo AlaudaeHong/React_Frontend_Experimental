@@ -1,77 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, Message } from "semantic-ui-react";
+import { useSelector } from "react-redux";
 
-class NavigationBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoggedIn: false,
-            authURL: "",
-            loginMsg: "",
-        };
-        this.handleItemClick = this.handleItemClick.bind(this);
-        this.UpdateState = this.UpdateState.bind(this);
-    }
+export const NavigationBar = () => {
+    const user = useSelector((state) => state.auth.user);
+    const authStatus = useSelector((state) => state.auth.status);
 
-    handleItemClick(e) {
-        this.setState((state) => ({
-            isLoggedIn: !state.isLoggedIn,
-        }));
+    const [authurl, setAuthurl] = useState("");
+    const [username, setUsername] = useState("");
 
-        this.UpdateState();
-
-        console.log(this.state.loginMsg);
-    }
-
-    UpdateState() {
-        if (this.state.isLoggedIn) {
-            this.setState({
-                loginMsg: "User",
-                authURL: "/logout",
-            });
-        } else {
-            this.setState({
-                loginMsg: "Guset",
-                authURL: "/login",
-            });
+    useEffect(() => {
+        if (authStatus === "loaded") {
+            if (user.userId === null) {
+                setUsername("Guest");
+                setAuthurl("/login");
+            } else {
+                setUsername(user.username);
+                setAuthurl("/logout");
+            }
         }
-    }
+    });
 
-    componentDidMount() {
-        this.UpdateState();
-    }
-
-    render() {
-        return (
-            <div className="Navigation">
-                <div className="Banner">
-                    <Message>
-                        <p>
-                            {" "}
-                            A React & Express.js Project By Yun Hong. This
-                            website is currently under construction
-                        </p>
-                    </Message>
-                </div>
-                <Menu inverted>
-                    <Menu.Item header name="Welcome" color="blue" active={true}>
-                        Welcome to Yun Hong's Homepage
-                    </Menu.Item>
-                    <Menu.Item name="home" href="/" />
-                    <Menu.Item name="about" href="/about" />
-                    <Menu.Item name="experimental" href="/" />
-                    <Menu.Item name="hobby" href="/" />
-                    <Menu.Menu position="right">
-                        {/* <Menu.Item name={loginMsg} href={authURL} onClick={handleItemClick}/> */}
-                        <Menu.Item
-                            name={this.state.loginMsg}
-                            onClick={this.handleItemClick}
-                        />
-                    </Menu.Menu>
-                </Menu>
+    return (
+        <div className="Navigation">
+            <div className="Banner">
+                <Message>
+                    <p>
+                        {" "}
+                        A React & Express.js Project By Yun Hong. This website
+                        is currently under construction
+                    </p>
+                </Message>
             </div>
-        );
-    }
-}
-
-export default NavigationBar;
+            <Menu inverted>
+                <Menu.Item header name="Welcome" color="blue" active={true}>
+                    Welcome to Yun Hong's Homepage
+                </Menu.Item>
+                <Menu.Item name="home" href="/" />
+                <Menu.Item name="about" href="/about" />
+                <Menu.Item name="experimental" href="/" />
+                <Menu.Item name="hobby" href="/" />
+                <Menu.Menu position="right">
+                    <Menu.Item name={username} href={authurl} />
+                </Menu.Menu>
+            </Menu>
+        </div>
+    );
+};

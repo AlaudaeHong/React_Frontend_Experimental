@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NavigationBar from "../components/navigation";
+import { NavigationBar } from "../components/navigation";
 import { Menu, Image, Grid, Header, Container } from "semantic-ui-react";
 
 class About extends Component {
@@ -72,7 +72,7 @@ function Bio() {
 function Resume() {
     return (
         <div>
-            <h1>Resume</h1>
+            <Header size="huge">Resume</Header>{" "}
             <Image
                 src={require("../static/about/Resume1024_1.jpg")}
                 size="huge"
