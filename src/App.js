@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import Home from "./home";
 import About from "./about";
+import {LoginUserPage} from "./features/auth/login"
 
 import { Switch, Route } from "react-router-dom";
 
@@ -12,11 +13,15 @@ function App() {
                 <DB />
             </Route>
             
-            <Route paht="/login">
-                <Login />
-            </Route> */}
+             */}
+                <Route path="/login">
+                    <LoginUserPage />
+                </Route>
                 <Route path="/about">
                     <About />
+                </Route>
+                <Route path="/home">
+                    <Home />
                 </Route>
                 <Route path="/">
                     <Home />

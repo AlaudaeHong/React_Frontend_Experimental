@@ -5,17 +5,6 @@ import NavigationBar from "./navigation";
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = { apiResponse: "" };
-    }
-
-    /* callAPI() {
-        fetch("http://localhost:10000/testAPI")
-            .then((res) => res.text())
-            .then((res) => this.setState({ apiResponse: res }));
-    } */
-
-    componentDidMount() {
-        // this.callAPI();
     }
 
     render() {
@@ -32,7 +21,6 @@ class Home extends Component {
                         </Grid.Row>
                     </Grid>
                 </Container>
-                {/* <p className="App-intro">{this.state.apiResponse}</p> */}
             </div>
         );
     }
