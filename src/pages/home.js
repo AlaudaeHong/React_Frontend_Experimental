@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Segment, Grid, Header, Container, Message } from "semantic-ui-react";
-import NavigationBar from "./navigation";
+import NavigationBar from "../components/navigation";
 
 class Home extends Component {
     constructor(props) {

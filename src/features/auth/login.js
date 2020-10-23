@@ -32,6 +32,7 @@ export const LoginUserPage = () => {
     };
 
 
+    // Move it to App.js for Global AUTH check
     useEffect(() => {
         console.log(authStatus);
         if (authStatus === "idle") {

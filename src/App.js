@@ -1,6 +1,6 @@
 import React from "react";
-import Home from "./home";
-import About from "./about";
+import Home from "./pages/home";
+import About from "./pages/about";
 import {LoginUserPage} from "./features/auth/login"
 
 import { Switch, Route } from "react-router-dom";

@@ -9,9 +9,7 @@ const initialState = {
 
 export const fetchAuthUser = createAsyncThunk("auth/check", async () => {
     const response = await fetch("/api/auth");
-
     const data = await response.json();
-
     return data;
 });
 
@@ -66,6 +64,14 @@ export const authSlice = createSlice({
         },
         [fetchAuthUser.rejected]: (state, action) => {
             state.status = "failed";
+        },
+        [registerAuthUser.fulfilled]: (state, action) => {
+            state.status = "loaded";
+            state.user = action.payload;
+        },
+        [loginAuthUser.fulfilled]: (state, action) => {
+            state.status = "loaded";
+            state.user = action.payload;
         },
     },
 });
