@@ -13,13 +13,16 @@ import {
 } from "semantic-ui-react";
 
 export const LoginUserPage = () => {
+    /* Local stored state */
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    /* Globally stored state */
     const dispatch = useDispatch();
     const user = useSelector((state) => state.auth.user);
     const authStatus = useSelector((state) => state.auth.status);
 
+    /* Update field input change */
     const onUsernameChanged = (e) => setUsername(e.target.value);
     const onPasswordChanged = (e) => setPassword(e.target.value);
 
@@ -67,7 +70,6 @@ export const LoginUserPage = () => {
                                     value={password}
                                     onChange={onPasswordChanged}
                                 />
-
                                 <Button
                                     color="blue"
                                     fluid
@@ -79,7 +81,7 @@ export const LoginUserPage = () => {
                             </Segment>
                         </Form>
                         <Message>
-                            New to us? <a href="#">Sign Up</a>
+                            New to us? <a href="#">Let me know if want a account to play with</a>
                         </Message>
                     </Grid.Column>
                 </Grid>

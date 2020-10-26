@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Menu, Message } from "semantic-ui-react";
+import { Menu, Message, Dropdown } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
 export const NavigationBar = () => {
@@ -8,15 +8,18 @@ export const NavigationBar = () => {
 
     const [authurl, setAuthurl] = useState("");
     const [username, setUsername] = useState("");
+    const [authaction, setAuthAction] = useState("");
 
     useEffect(() => {
         if (authStatus === "loaded") {
             if (user.userId === null) {
                 setUsername("Guest");
                 setAuthurl("/login");
+                setAuthAction("Login");
             } else {
                 setUsername(user.username);
                 setAuthurl("/logout");
+                setAuthAction("Logout");
             }
         }
     });
@@ -38,10 +41,16 @@ export const NavigationBar = () => {
                 </Menu.Item>
                 <Menu.Item name="home" href="/" />
                 <Menu.Item name="about" href="/about" />
-                <Menu.Item name="experimental" href="/" />
-                <Menu.Item name="hobby" href="/" />
+                <Menu.Item name="experimental" href="/" disabled/>
+                <Menu.Item name="hobby" href="/" disabled/>
                 <Menu.Menu position="right">
-                    <Menu.Item name={username} href={authurl} />
+                    <Dropdown item text={username}>
+                        <Dropdown.Menu>
+                            <Dropdown.Item href={authurl}>
+                                {authaction}
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </Menu.Menu>
             </Menu>
         </div>

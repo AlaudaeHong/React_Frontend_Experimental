@@ -5,7 +5,9 @@ import Home from "./pages/home";
 import About from "./pages/about";
 import { LoginUserPage } from "./features/auth/login";
 import { LogoutUserPage } from "./features/auth/logout";
+import { SinglePostPage } from "./features/post/singlePostPage";
 import { fetchAuthUser } from "./features/auth/authSlice";
+import { selectPostById } from "./features/post/postSlice";
 
 function App() {
     let loggedin = false;
@@ -15,7 +17,7 @@ function App() {
     const authStatus = useSelector((state) => state.auth.status);
 
     useEffect(() => {
-        if (authStatus === 'idle') dispatch(fetchAuthUser());
+        if (authStatus === "idle") dispatch(fetchAuthUser());
     }, [authStatus, dispatch]);
 
     if (authStatus === "loaded") {
@@ -29,12 +31,12 @@ function App() {
     return (
         <div className="App">
             <Switch>
+                <Route exact path="/post/:postId" component={SinglePostPage} />
                 <Route path="/login">
                     {loggedin ? <Redirect to="/" /> : <LoginUserPage />}
                 </Route>
                 <Route path="/logout">
                     <LogoutUserPage />
-                    {/* {loggedin ? <LogoutUserPage /> : <Redirect to="/" />} */}
                 </Route>
                 <Route path="/about">
                     <About />

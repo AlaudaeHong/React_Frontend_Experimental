@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { NavigationBar } from "../components/navigation";
-import { Menu, Image, Grid, Header, Container } from "semantic-ui-react";
+import {
+    Menu,
+    Image,
+    Grid,
+    Header,
+    Container,
+    Segment,
+} from "semantic-ui-react";
 
 class About extends Component {
     constructor(props) {
@@ -28,12 +35,13 @@ class About extends Component {
         return (
             <div>
                 <NavigationBar isLoggedIn={true} />
-
                 <Container>
                     <Grid celled>
                         <Grid.Row>
-                            <Grid.Column width={12}>{content}</Grid.Column>
-                            <Grid.Column width={4}>
+                            <Grid.Column width={12} >
+                                {content}
+                            </Grid.Column>
+                            <Grid.Column width={4} >
                                 <Menu pointing secondary vertical>
                                     <Menu.Item
                                         name="bio"
@@ -62,29 +70,35 @@ class About extends Component {
 
 function Bio() {
     return (
-        <div>
-            <Header size="huge">YUN HONG</Header>
-            <p></p>
-        </div>
+        <Segment size="large">
+            <Header size="huge">Yun Hong</Header>
+            Hi, this is Yun Hong. I am currently pursuing M.S. in ECE at CMU. My
+            concentration are in system (Embedded, Networking, and
+            HPC/Distributed). But I have a growing interest in web technology
+            (The beauty of "One page works everywhere"). I will graduate in 2021
+            winter (Orginally I will graduate in 2022 Spring, but due to
+            legitimate reasons...). I am looking for a SDE job in
+            system/backend/frontend field after my graduation.
+        </Segment>
     );
 }
 
 function Resume() {
     return (
-        <div>
+        <Segment>
             <Header size="huge">Resume</Header>{" "}
             <Image
                 src={require("../static/about/Resume1024_1.jpg")}
                 size="huge"
                 fluid
             />
-        </div>
+        </Segment>
     );
 }
 
 function Others() {
     return (
-        <div>
+        <Segment>
             <Header size="huge">Others</Header>
             <Header size="medium">GitHub</Header>
             <p>https://github.com/AlaudaeHong</p>
@@ -93,10 +107,18 @@ function Others() {
             <Header size="medium">email</Header>
             <p>yunhong@[school email]</p>
             <Header size="medium">Backend Repo(Experss.js)</Header>
-            <p>https://github.com/AlaudaeHong/Expressjs_Backend_Experimental</p>
+            <p>
+                The backend that supports this website:
+                <br />
+                https://github.com/AlaudaeHong/Expressjs_Backend_Experimental
+            </p>
             <Header size="medium">Frontend Repo(React.js)</Header>
-            <p>https://github.com/AlaudaeHong/React_Frontend_Experimental</p>
-        </div>
+            <p>
+                The frontend that supports this website:
+                <br />
+                https://github.com/AlaudaeHong/React_Frontend_Experimental
+            </p>
+        </Segment>
     );
 }
 
