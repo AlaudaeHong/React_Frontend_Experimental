@@ -20,3 +20,4 @@ as a desktop client.
 
 # Others:
 * Inline CSS in JSX: https://www.w3schools.com/react/react_css.asp
+* Inline CSS in HTML: https://www.w3schools.com/html/html_css.asp

@@ -11,6 +11,9 @@ import {
 import { Link } from "react-router-dom";
 import { NavigationBar } from "../components/navigation";
 import { PostsList } from "../features/post/postList";
+import { BlockStyle } from '../style/style.json';
+
+const backgroundColor = BlockStyle.backgroundColor;
 
 class Home extends Component {
     render() {
@@ -25,7 +28,7 @@ class Home extends Component {
                                 <PostsList />
                             </Grid.Column>
                             <Grid.Column width={3}>
-                                <Menu vertical fluid>
+                                <Menu vertical fluid style={{backgroundColor}}>
                                     <Menu.Item>
                                         <Menu.Header>Post</Menu.Header>
                                         <Menu.Menu>
@@ -57,7 +60,7 @@ function HomeIntro() {
             <Message warning>
                 This is a personal website and treat it nicely
             </Message>
-            <Segment>
+            <Segment style={{backgroundColor}}>
                 <Header as="h3">Welcome:</Header>
                 Welcome to my page. I am currently pursuing M.S. in ECE at CMU.
                 My concentration are in system (Embedded, Networking, and

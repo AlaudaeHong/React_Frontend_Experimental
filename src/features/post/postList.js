@@ -4,10 +4,13 @@ import { Segment, Header, Grid } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { selectAllPosts, fetchPosts } from "./postSlice";
 import { format } from 'date-fns';
+import { BlockStyle } from '../../style/style.json';
+
+const backgroundColor = BlockStyle.backgroundColor;
 
 const PostExcerpt = ({ post }) => {
     return (
-        <Segment key={post._id}>
+        <Segment key={post._id} style={{backgroundColor}}>
             <Grid celled='internally'>
                 <Grid.Column width={10}>
                     <Link to={`/post/${post._id}`}>

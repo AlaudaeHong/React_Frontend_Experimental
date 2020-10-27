@@ -8,6 +8,9 @@ import {
     Container,
     Segment,
 } from "semantic-ui-react";
+import { BlockStyle } from "../style/style.json";
+
+const backgroundColor = BlockStyle.backgroundColor;
 
 class About extends Component {
     constructor(props) {
@@ -36,13 +39,22 @@ class About extends Component {
             <div>
                 <NavigationBar isLoggedIn={true} />
                 <Container>
-                    <Grid celled='internally'>
+                    <Grid celled="internally">
                         <Grid.Row>
-                            <Grid.Column width={12} >
-                                {content}
+                            <Grid.Column width={12}>
+                                <Segment
+                                    size="large"
+                                    style={{ backgroundColor }}
+                                >
+                                    {content}
+                                </Segment>
                             </Grid.Column>
-                            <Grid.Column width={4} >
-                                <Menu vertical fluid>
+                            <Grid.Column width={4}>
+                                <Menu
+                                    vertical
+                                    fluid
+                                    style={{ backgroundColor }}
+                                >
                                     <Menu.Item
                                         name="bio"
                                         active={activeItem === "bio"}
@@ -70,7 +82,7 @@ class About extends Component {
 
 function Bio() {
     return (
-        <Segment size="large">
+        <>
             <Header size="huge">Yun Hong</Header>
             Hi, this is Yun Hong. I am currently pursuing M.S. in ECE at CMU. My
             concentration are in system (Embedded, Networking, and
@@ -79,26 +91,26 @@ function Bio() {
             winter (Orginally I will graduate in 2022 Spring, but due to
             legitimate reasons...). I am looking for a SDE job in
             system/backend/frontend field after my graduation.
-        </Segment>
+        </>
     );
 }
 
 function Resume() {
     return (
-        <Segment>
+        <>
             <Header size="huge">Resume</Header>{" "}
             <Image
                 src={require("../static/about/Resume1024_1.jpg")}
                 size="huge"
                 fluid
             />
-        </Segment>
+        </>
     );
 }
 
 function Others() {
     return (
-        <Segment>
+        <>
             <Header size="huge">Others</Header>
             <Header size="medium">GitHub</Header>
             <p>https://github.com/AlaudaeHong</p>
@@ -118,7 +130,7 @@ function Others() {
                 <br />
                 https://github.com/AlaudaeHong/React_Frontend_Experimental
             </p>
-        </Segment>
+        </>
     );
 }
 
