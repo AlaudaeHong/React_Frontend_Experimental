@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Menu, Message, Dropdown } from "semantic-ui-react";
+import { Menu, Message, Dropdown, Divider } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
 export const NavigationBar = () => {
@@ -22,7 +22,7 @@ export const NavigationBar = () => {
                 setAuthAction("Logout");
             }
         }
-    });
+    }, [authStatus, user.userId, user.username]);
 
     return (
         <div className="Navigation">
@@ -35,7 +35,7 @@ export const NavigationBar = () => {
                     </p>
                 </Message>
             </div>
-            <Menu inverted>
+            <Menu>
                 <Menu.Item header name="Welcome" color="blue" active={true}>
                     Welcome to Yun Hong's Homepage
                 </Menu.Item>
@@ -53,6 +53,7 @@ export const NavigationBar = () => {
                     </Dropdown>
                 </Menu.Menu>
             </Menu>
+            <Divider hidden/>
         </div>
     );
 };

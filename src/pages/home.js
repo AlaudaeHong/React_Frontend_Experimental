@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Segment, Grid, Header, Container, Message } from "semantic-ui-react";
+import {
+    Segment,
+    Grid,
+    Header,
+    Container,
+    Message,
+    Menu,
+    Button,
+} from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import { NavigationBar } from "../components/navigation";
 import { PostsList } from "../features/post/postList";
 
@@ -9,13 +18,31 @@ class Home extends Component {
             <div className="App">
                 <NavigationBar />
                 <Container>
-                    <Grid celled>
+                    <Grid celled='internally'>
                         <Grid.Row>
                             <Grid.Column width={13}>
                                 <HomeIntro />
                                 <PostsList />
                             </Grid.Column>
-                            <Grid.Column width={3}></Grid.Column>
+                            <Grid.Column width={3}>
+                                <Menu vertical fluid>
+                                    <Menu.Item>
+                                        <Menu.Header>Post</Menu.Header>
+                                        <Menu.Menu>
+                                            <Menu.Item>
+                                                <Button>
+                                                    <Link
+                                                        to="/posts/add"
+                                                        className="button"
+                                                    >
+                                                        Add Post
+                                                    </Link>
+                                                </Button>
+                                            </Menu.Item>
+                                        </Menu.Menu>
+                                    </Menu.Item>
+                                </Menu>
+                            </Grid.Column>
                         </Grid.Row>
                     </Grid>
                 </Container>
@@ -26,7 +53,7 @@ class Home extends Component {
 
 function HomeIntro() {
     return (
-        <div>
+        <>
             <Message warning>
                 This is a personal website and treat it nicely
             </Message>
@@ -40,7 +67,7 @@ function HomeIntro() {
                 and experiment frontend (React.js for now) and backend
                 (Express.js for now) technicals.
             </Segment>
-        </div>
+        </>
     );
 }
 

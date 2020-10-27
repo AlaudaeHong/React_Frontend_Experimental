@@ -1,16 +1,27 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Segment } from "semantic-ui-react";
+import { Segment, Header, Grid } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { selectAllPosts, fetchPosts } from "./postSlice";
+import { format } from 'date-fns';
 
 const PostExcerpt = ({ post }) => {
     console.log(post);
     return (
-        <Segment key={post.id}>
-            <Link to={`/post/${post._id}`} className="button muted-button">
-                {post.title} by {post.author}
-            </Link>
+        <Segment key={post._id}>
+            <Grid celled='internally'>
+                <Grid.Column width={10}>
+                    <Link to={`/post/${post._id}`}>
+                        <Header as='h3'>{post.title}</Header>
+                    </Link>
+                </Grid.Column>
+                <Grid.Column width={3}>
+                    {post.author}
+                </Grid.Column>
+                <Grid.Column width={3}>
+                    {format(Date.parse(post.timestamp), 'yyyy-MM-dd HH:mm')}
+                </Grid.Column>
+            </Grid>
         </Segment>
     );
 };
@@ -43,9 +54,11 @@ export const PostsList = () => {
     }
 
     return (
-        <Segment className="posts-list">
-            <h2>Posts</h2>
-            {content}
-        </Segment>
+        <>
+            <Header as="h3" dividing>
+                All Posts
+            </Header>
+            <Segment.Group>{content}</Segment.Group>
+        </>
     );
 };

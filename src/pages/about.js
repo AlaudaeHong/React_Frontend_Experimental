@@ -36,13 +36,13 @@ class About extends Component {
             <div>
                 <NavigationBar isLoggedIn={true} />
                 <Container>
-                    <Grid celled>
+                    <Grid celled='internally'>
                         <Grid.Row>
                             <Grid.Column width={12} >
                                 {content}
                             </Grid.Column>
                             <Grid.Column width={4} >
-                                <Menu pointing secondary vertical>
+                                <Menu vertical fluid>
                                     <Menu.Item
                                         name="bio"
                                         active={activeItem === "bio"}

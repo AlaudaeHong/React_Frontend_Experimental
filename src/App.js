@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./pages/home";
@@ -7,7 +7,6 @@ import { LoginUserPage } from "./features/auth/login";
 import { LogoutUserPage } from "./features/auth/logout";
 import { SinglePostPage } from "./features/post/singlePostPage";
 import { fetchAuthUser } from "./features/auth/authSlice";
-import { selectPostById } from "./features/post/postSlice";
 
 function App() {
     let loggedin = false;

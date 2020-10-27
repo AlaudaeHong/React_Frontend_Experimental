@@ -81,7 +81,7 @@ export const LoginUserPage = () => {
                             </Segment>
                         </Form>
                         <Message>
-                            New to us? <a href="#">Let me know if want a account to play with</a>
+                            New to us? <a href="/">Let me know if want a account to play with</a>
                         </Message>
                     </Grid.Column>
                 </Grid>
