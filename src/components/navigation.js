@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Menu, Message, Dropdown, Divider } from "semantic-ui-react";
 import { useSelector } from "react-redux";
+import Background from '../static/navigation/banner.jpg';
 
 export const NavigationBar = () => {
     const user = useSelector((state) => state.auth.user);
@@ -25,9 +26,18 @@ export const NavigationBar = () => {
     }, [authStatus, user.userId, user.username]);
 
     return (
-        <div className="Navigation">
-            <div className="Banner">
-                <Message>
+        <div>
+            <div
+                className="Banner"
+                style={{
+                    height: "200px",
+                    backgroundImage: `url(${Background})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "50% 0%", /* Center the image */
+                    backgroundSize: "cover", /* Resize the background image to cover the entire container */
+                }}
+            >
+                <Message style={{backgroundColor: "rgba(170, 170, 170, 0.8)"}}>
                     <p>
                         {" "}
                         A React & Express.js Project By Yun Hong. This website
@@ -35,14 +45,14 @@ export const NavigationBar = () => {
                     </p>
                 </Message>
             </div>
-            <Menu>
+            <Menu style={{marginTop: "0%"}}>
                 <Menu.Item header name="Welcome" color="blue" active={true}>
                     Welcome to Yun Hong's Homepage
                 </Menu.Item>
                 <Menu.Item name="home" href="/" />
                 <Menu.Item name="about" href="/about" />
-                <Menu.Item name="experimental" href="/" disabled/>
-                <Menu.Item name="hobby" href="/" disabled/>
+                <Menu.Item name="experimental" href="/" disabled />
+                <Menu.Item name="hobby" href="/" disabled />
                 <Menu.Menu position="right">
                     <Dropdown item text={username}>
                         <Dropdown.Menu>
@@ -53,7 +63,7 @@ export const NavigationBar = () => {
                     </Dropdown>
                 </Menu.Menu>
             </Menu>
-            <Divider hidden/>
+            <Divider hidden />
         </div>
     );
 };

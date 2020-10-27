@@ -17,3 +17,6 @@ as a desktop client.
 3. https://reactjs.org/docs
 4. https://reactrouter.com/web/guides/
 5. https://react.semantic-ui.com/
+
+# Others:
+* Inline CSS in JSX: https://www.w3schools.com/react/react_css.asp

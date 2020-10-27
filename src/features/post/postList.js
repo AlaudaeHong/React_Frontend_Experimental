@@ -6,7 +6,6 @@ import { selectAllPosts, fetchPosts } from "./postSlice";
 import { format } from 'date-fns';
 
 const PostExcerpt = ({ post }) => {
-    console.log(post);
     return (
         <Segment key={post._id}>
             <Grid celled='internally'>
@@ -47,7 +46,7 @@ export const PostsList = () => {
         // Sort posts in reverse chronological order by datetime string
 
         content = posts.map((post) => (
-            <PostExcerpt key={post.id} post={post} />
+            <PostExcerpt key={post._id} post={post} />
         ));
     } else if (postStatus === "error") {
         content = <div>{error}</div>;
