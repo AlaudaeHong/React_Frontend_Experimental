@@ -8,6 +8,9 @@ import { format } from "date-fns";
 
 import { fetchOnePost } from "./postSlice";
 import { NavigationBar } from "../../components/navigation";
+import { BlockStyle } from "../../style/style.json";
+
+const backgroundColor = BlockStyle.backgroundColor;
 
 export const SinglePostPage = ({ match }) => {
     const { postId } = match.params;
@@ -27,11 +30,11 @@ export const SinglePostPage = ({ match }) => {
         }
     }, [RequestStatus, postId, dispatch]);
 
-    let content = <Segment>Loading</Segment>;
+    let content = "Loading";
 
     if (post) {
         content = (
-            <Segment>
+            <>
                 <Grid>
                     <Grid.Column width={13}>
                         <Header as="h4">
@@ -55,14 +58,16 @@ export const SinglePostPage = ({ match }) => {
                 </Grid>
 
                 <ReactMarkdown plugins={[gfm]} children={post.content} />
-            </Segment>
+            </>
         );
     }
 
     return (
         <>
             <NavigationBar />
-            <Container>{content}</Container>
+            <Container>
+                <Segment style={{ backgroundColor }}>{content}</Segment>
+            </Container>
         </>
     );
 };
