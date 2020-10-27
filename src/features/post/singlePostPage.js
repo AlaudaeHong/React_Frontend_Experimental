@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Segment, Container, Header, Button, Grid } from "semantic-ui-react";
 import { format } from "date-fns";
 
@@ -42,7 +42,7 @@ export const SinglePostPage = ({ match }) => {
                             )}
                         </Header>
                     </Grid.Column>
-                    <Grid.Column width={3} textAlign='right'>
+                    <Grid.Column width={3} textAlign="right">
                         <Button>
                             <Link
                                 to={`/editPost/${post._id}`}

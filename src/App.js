@@ -6,7 +6,7 @@ import About from "./pages/about";
 import { LoginUserPage } from "./features/auth/login";
 import { LogoutUserPage } from "./features/auth/logout";
 import { SinglePostPage } from "./features/post/singlePostPage";
-import { fetchAuthUser } from "./features/auth/authSlice";
+import { fetchAuthUser, resetCheckByTime } from "./features/auth/authSlice";
 
 function App() {
     let loggedin = false;
@@ -25,6 +25,8 @@ function App() {
             loggedin = true;
             console.log("logged in");
         }
+
+        dispatch(resetCheckByTime());
     }
 
     return (

@@ -53,10 +53,15 @@ export const registerAuthUser = createAsyncThunk(
     }
 );
 
+
 export const authSlice = createSlice({
     name: "auth",
     initialState,
-    reducers: {},
+    reducers: {
+        resetCheck: (state) => {
+            state.status = "idle";
+        }
+    },
     extraReducers: {
         [fetchAuthUser.pending]: (state, action) => {
             state.status = "loading";
@@ -64,7 +69,6 @@ export const authSlice = createSlice({
         [fetchAuthUser.fulfilled]: (state, action) => {
             state.status = "loaded";
             state.user = action.payload;
-            console.log("fetched");
         },
         /* [fetchAuthUser.rejected]: (state, action) => {
             state.status = "failed";
@@ -86,5 +90,13 @@ export const authSlice = createSlice({
         },
     },
 });
+
+export const { resetCheck } = authSlice.actions;
+
+export const resetCheckByTime = () => function (dispatch) {
+    setTimeout(() => {
+        dispatch(resetCheck());
+    }, 1000 * 60 * 5);
+}
 
 export default authSlice.reducer;
