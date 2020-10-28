@@ -17,6 +17,8 @@ export const SinglePostPage = ({ match }) => {
 
     const dispatch = useDispatch();
     const post = useSelector((state) => state.posts.currentpost);
+    const user = useSelector((state) => state.auth.user);
+
     const [RequestStatus, setRequestStatus] = useState("idle");
 
     useEffect(() => {
@@ -33,6 +35,11 @@ export const SinglePostPage = ({ match }) => {
     let content = "Loading";
 
     if (post) {
+        let unauthedUser = true;
+        if (user && user.username === post.author) {
+            unauthedUser = false;
+        }
+
         content = (
             <>
                 <Grid>
@@ -46,11 +53,8 @@ export const SinglePostPage = ({ match }) => {
                         </Header>
                     </Grid.Column>
                     <Grid.Column width={3} textAlign="right">
-                        <Button>
-                            <Link
-                                to={`/editPost/${post._id}`}
-                                className="button"
-                            >
+                        <Button disabled={unauthedUser}>
+                            <Link to={`/post/e/${post._id}`} className="button">
                                 Edit Post
                             </Link>
                         </Button>
@@ -66,7 +70,7 @@ export const SinglePostPage = ({ match }) => {
         <>
             <NavigationBar />
             <Container>
-                <Segment style={{ backgroundColor }}>{content}</Segment>
+                <Segment style={{ backgroundColor, marginBottom: "14px"}}>{content}</Segment>
             </Container>
         </>
     );

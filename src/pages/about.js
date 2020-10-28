@@ -101,7 +101,6 @@ function Resume() {
             <Header size="huge">Resume</Header>{" "}
             <Image
                 src={require("../static/about/Resume1024_1.jpg")}
-                size="huge"
                 fluid
             />
         </>

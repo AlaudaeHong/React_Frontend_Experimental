@@ -7,6 +7,7 @@ import { LoginUserPage } from "./features/auth/login";
 import { LogoutUserPage } from "./features/auth/logout";
 import { SinglePostPage } from "./features/post/singlePostPage";
 import { fetchAuthUser, resetCheckByTime } from "./features/auth/authSlice";
+import { PostEditorPage } from "./features/post/postEditorPage";
 
 function App() {
     let loggedin = false;
@@ -33,6 +34,7 @@ function App() {
         <div className="App">
             <Switch>
                 <Route exact path="/post/:postId" component={SinglePostPage} />
+                <Route exact path="/post/e/:postId" component={PostEditorPage} />
                 <Route path="/login">
                     {loggedin ? <Redirect to="/" /> : <LoginUserPage />}
                 </Route>

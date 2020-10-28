@@ -24,6 +24,21 @@ export const fetchOnePost = createAsyncThunk("posts/viewpost", async (postid) =>
     return data;
 });
 
+export const updateOnePost = createAsyncThunk("posts/updatepost", async({postId, post})=>{
+    const requrl = "/api/post/" + postId;
+    console.log("hello:");
+    console.log(post);
+    const response = await fetch(requrl, {
+        method: "POST",
+        body: JSON.stringify(post),
+        headers:{
+            "Content-Type": "application/json",
+        }
+    });
+
+    return null;
+});
+
 const postSlice = createSlice({
     name: "posts",
     initialState,
@@ -49,6 +64,12 @@ const postSlice = createSlice({
             state.status = "succeeded";
             // Add any fetched posts to the array
             state.currentpost = action.payload;
+        },
+        [updateOnePost.pending]: (state, action) =>{
+            state.status = "pending";
+        },
+        [updateOnePost.pending]: (state, action) =>{
+            state.status = "succeed";
         },
     },
 });
