@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
 import { Grid, Form, Button } from "semantic-ui-react";
 import { format } from "date-fns";
 
 import { NavigationBar } from "../../components/navigation";
-import { fetchOnePost, updateOnePost } from "./postSlice";
+import { fetchOnePost, updateOnePost, createOnePost } from "./postSlice";
 
-export const PostEditorPage = ({ match }) => {
-    const { postId } = match.params;
+export const PostEditorPage = ({ update }) => {
+    const { postId } = useParams();
 
     const post = useSelector((state) => state.posts.currentpost);
 
@@ -21,7 +21,7 @@ export const PostEditorPage = ({ match }) => {
         setMarkdownContent(e.target.value);
     };
 
-    if (post && checkStatus === "pending") {
+    if (post && checkStatus === "pending" && update) {
         setMarkdownContent(post.content);
         setCheckStatus("succeed");
     }
@@ -35,6 +35,7 @@ export const PostEditorPage = ({ match }) => {
                         postId={postId}
                         markdownValue={markdownContent}
                         markdownOnChange={handleMarkdownChange}
+                        update={update}
                     />
                 </Grid.Column>
                 <Grid.Column width={8}>
@@ -44,6 +45,82 @@ export const PostEditorPage = ({ match }) => {
         </>
     );
 };
+
+function Editor({ postId, markdownValue, markdownOnChange, update }) {
+    const dispatch = useDispatch();
+    const post = useSelector((state) => state.posts.currentpost);
+    const postStatus = useSelector((state) => state.posts.status);
+
+    const [RequestStatus, setRequestStatus] = useState("idle");
+    const [SubmitStatus, setSubmitStatus] = useState("idle");
+    const [title, setTitle] = useState("");
+    const [catalog, setCatalog] = useState("");
+
+    const onTitleChange = (e) => {
+        setTitle(e.target.value);
+    };
+    const onCatalogChange = (e, d) => {
+        setCatalog(d.value);
+    };
+
+    const handleSubmitClick = async () => {
+        try {
+            await setSubmitStatus("pending");
+            let apost = { title, catalog, content: markdownValue };
+            if (update) {
+                await dispatch(
+                    updateOnePost({
+                        postId,
+                        post: apost,
+                    })
+                );
+            } else {
+                await dispatch(
+                    createOnePost({
+                        post: apost,
+                    })
+                );
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    useEffect(() => {
+        if (RequestStatus === "idle" && update) {
+            try {
+                setRequestStatus("pending");
+                dispatch(fetchOnePost(postId));
+            } catch (err) {
+                console.error("Failed to get the post: ", err);
+            }
+        }
+    }, [RequestStatus, postId, dispatch]);
+
+    if (post && RequestStatus === "pending" && update) {
+        setTitle(post.title);
+        setCatalog(post.catalog);
+        setRequestStatus("succeeded");
+    }
+
+    if (SubmitStatus === "pending" && postStatus === "uploaded") {
+        console.log(post);
+        let redirecturl = "/post/" + post._id;
+        return <Redirect to={redirecturl} />;
+    }
+
+    return (
+        <EditorBase
+            titleValue={title}
+            titleOnChange={onTitleChange}
+            catalogValue={catalog}
+            CatalogOnChange={onCatalogChange}
+            markdownValue={markdownValue}
+            markdownOnChange={markdownOnChange}
+            onSubitClick={handleSubmitClick}
+        />
+    );
+}
 
 const catalogOptions = [
     {
@@ -68,63 +145,15 @@ const catalogOptions = [
     },
 ];
 
-function Editor({ postId, markdownValue, markdownOnChange }) {
-    const dispatch = useDispatch();
-    const post = useSelector((state) => state.posts.currentpost);
-    const postStatus = useSelector((state) => state.posts.status);
-
-    const [RequestStatus, setRequestStatus] = useState("idle");
-    const [SubmitStatus, setSubmitStatus] = useState("idle");
-    const [title, setTitle] = useState("");
-    const [catalog, setCatalog] = useState("");
-
-    const onTitleChange = (e) => {
-        setTitle(e.target.value);
-    };
-    const onCatalogChange = (e, d) => {
-        setCatalog(d.value);
-    };
-
-    const handleSubmitClick = async () => {
-        try {
-            await setSubmitStatus("pending");
-            await dispatch(
-                updateOnePost({
-                    postId,
-                    post: {
-                        title,
-                        catalog,
-                        content: markdownValue,
-                    },
-                })
-            );
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
-    useEffect(() => {
-        if (RequestStatus === "idle") {
-            try {
-                setRequestStatus("pending");
-                dispatch(fetchOnePost(postId));
-            } catch (err) {
-                console.error("Failed to get the post: ", err);
-            }
-        }
-    }, [RequestStatus, postId, dispatch]);
-
-    if (post && RequestStatus === "pending") {
-        setTitle(post.title);
-        setCatalog(post.catalog);
-        setRequestStatus("succeeded");
-    }
-
-    if (SubmitStatus === "pending" && postStatus === "succeeded") {
-        let redirecturl = "/post/" + postId;
-        return <Redirect to={redirecturl} />;
-    }
-
+function EditorBase({
+    titleValue,
+    titleOnChange,
+    catalogValue,
+    CatalogOnChange,
+    markdownValue,
+    markdownOnChange,
+    onSubitClick,
+}) {
     return (
         <>
             <Form>
@@ -135,8 +164,8 @@ function Editor({ postId, markdownValue, markdownOnChange }) {
                                 <label>Title</label>
                                 <Form.Input
                                     placeholder="title"
-                                    value={title}
-                                    onChange={onTitleChange}
+                                    value={titleValue}
+                                    onChange={titleOnChange}
                                 />
                             </Form.Field>
                         </Grid.Column>
@@ -148,8 +177,8 @@ function Editor({ postId, markdownValue, markdownOnChange }) {
                                     fluid
                                     selection
                                     options={catalogOptions}
-                                    value={catalog}
-                                    onChange={onCatalogChange}
+                                    value={catalogValue}
+                                    onChange={CatalogOnChange}
                                 />
                             </Form.Field>
                         </Grid.Column>
@@ -158,7 +187,7 @@ function Editor({ postId, markdownValue, markdownOnChange }) {
                                 color="blue"
                                 fluid
                                 size="large"
-                                onClick={handleSubmitClick}
+                                onClick={onSubitClick}
                             >
                                 Submit Post
                             </Button>

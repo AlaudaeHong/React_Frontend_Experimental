@@ -26,6 +26,19 @@ export const fetchOnePost = createAsyncThunk("posts/viewpost", async (postid) =>
 
 export const updateOnePost = createAsyncThunk("posts/updatepost", async({postId, post})=>{
     const requrl = "/api/post/" + postId;
+    const response = await fetch(requrl, {
+        method: "POST",
+        body: JSON.stringify(post),
+        headers:{
+            "Content-Type": "application/json",
+        }
+    });
+
+    return null;
+});
+
+export const createOnePost = createAsyncThunk("posts/createpost", async({post})=>{
+    const requrl = "/api/post/upload";
     console.log("hello:");
     console.log(post);
     const response = await fetch(requrl, {
@@ -36,7 +49,8 @@ export const updateOnePost = createAsyncThunk("posts/updatepost", async({postId,
         }
     });
 
-    return null;
+    const data = await response.json();
+    return data;
 });
 
 const postSlice = createSlice({
@@ -68,8 +82,17 @@ const postSlice = createSlice({
         [updateOnePost.pending]: (state, action) =>{
             state.status = "pending";
         },
-        [updateOnePost.pending]: (state, action) =>{
-            state.status = "succeed";
+        [updateOnePost.fulfilled]: (state, action) =>{
+            state.status = "uploaded";
+        },
+        [createOnePost.pending]: (state, action) =>{
+            state.status = "pending";
+            state.currentpost = null;
+        },
+        [createOnePost.fulfilled]: (state, action) =>{
+            state.status = "uploaded";
+            console.log(action.payload);
+            state.currentpost = action.payload;
         },
     },
 });

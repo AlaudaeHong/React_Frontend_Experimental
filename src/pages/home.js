@@ -35,7 +35,7 @@ class Home extends Component {
                                             <Menu.Item>
                                                 <Button>
                                                     <Link
-                                                        to="/posts/add"
+                                                        to="/post/a"
                                                         className="button"
                                                     >
                                                         Add Post

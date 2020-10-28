@@ -33,8 +33,14 @@ function App() {
     return (
         <div className="App">
             <Switch>
+                <Route exact path="/post/a">
+                    <PostEditorPage update={false} />
+                </Route>
+                <Route exact path="/post/e/:postId">
+                    <PostEditorPage update={true} />
+                </Route>
                 <Route exact path="/post/:postId" component={SinglePostPage} />
-                <Route exact path="/post/e/:postId" component={PostEditorPage} />
+
                 <Route path="/login">
                     {loggedin ? <Redirect to="/" /> : <LoginUserPage />}
                 </Route>

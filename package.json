@@ -40,6 +40,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:10000",
-  "proxybackup": "http://api.alaudaehong.space"
+  "proxytest": "http://localhost:10000",
+  "proxy": "http://api.alaudaehong.space"
 }

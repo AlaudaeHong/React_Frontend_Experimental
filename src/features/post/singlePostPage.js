@@ -18,6 +18,7 @@ export const SinglePostPage = ({ match }) => {
     const dispatch = useDispatch();
     const post = useSelector((state) => state.posts.currentpost);
     const user = useSelector((state) => state.auth.user);
+    const postStatus = useSelector((state) => state.posts.status);
 
     const [RequestStatus, setRequestStatus] = useState("idle");
 
@@ -34,7 +35,7 @@ export const SinglePostPage = ({ match }) => {
 
     let content = "Loading";
 
-    if (post) {
+    if (post && postStatus === "succeeded") {
         let unauthedUser = true;
         if (user && user.username === post.author) {
             unauthedUser = false;
