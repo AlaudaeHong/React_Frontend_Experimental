@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Menu, Message, Dropdown, Divider } from "semantic-ui-react";
+import { Menu, Message, Dropdown, Divider, Button } from "semantic-ui-react";
 import { useSelector } from "react-redux";
-import Background from '../static/navigation/banner.jpg';
+import { Link } from "react-router-dom";
+import Background from "../static/navigation/banner.jpg";
 
 export const NavigationBar = () => {
     const user = useSelector((state) => state.auth.user);
@@ -33,11 +34,14 @@ export const NavigationBar = () => {
                     height: "200px",
                     backgroundImage: `url(${Background})`,
                     backgroundRepeat: "no-repeat",
-                    backgroundPosition: "50% 0%", /* Center the image */
-                    backgroundSize: "cover", /* Resize the background image to cover the entire container */
+                    backgroundPosition: "50% 0%" /* Center the image */,
+                    backgroundSize:
+                        "cover" /* Resize the background image to cover the entire container */,
                 }}
             >
-                <Message style={{backgroundColor: "rgba(170, 170, 170, 0.8)"}}>
+                <Message
+                    style={{ backgroundColor: "rgba(170, 170, 170, 0.8)" }}
+                >
                     <p>
                         {" "}
                         A React & Express.js Project By Yun Hong. This website
@@ -45,7 +49,7 @@ export const NavigationBar = () => {
                     </p>
                 </Message>
             </div>
-            <Menu style={{marginTop: "0%"}}>
+            <Menu style={{ marginTop: "0%" }}>
                 <Menu.Item header name="Welcome" color="blue" active={true}>
                     Welcome to Yun Hong's Homepage
                 </Menu.Item>
@@ -53,6 +57,13 @@ export const NavigationBar = () => {
                 <Menu.Item name="about" href="/about" />
                 <Menu.Item name="experimental" href="/" disabled />
                 <Menu.Item name="hobby" href="/" disabled />
+                <Menu.Item>
+                    <Button disabled={username === "Guest" ? true : false}>
+                        <Link to="/post/a" className="button">
+                            Add Post
+                        </Link>
+                    </Button>
+                </Menu.Item>
                 <Menu.Menu position="right">
                     <Dropdown item text={username}>
                         <Dropdown.Menu>

@@ -8,7 +8,6 @@ const initialState = {
 };
 
 export const fetchPosts = createAsyncThunk("posts/list", async () => {
-    console.log("fetching");
     const requrl = "/api/post/";
     const response = await fetch(requrl);
 
@@ -39,14 +38,23 @@ export const updateOnePost = createAsyncThunk("posts/updatepost", async({postId,
 
 export const createOnePost = createAsyncThunk("posts/createpost", async({post})=>{
     const requrl = "/api/post/upload";
-    console.log("hello:");
-    console.log(post);
     const response = await fetch(requrl, {
         method: "POST",
         body: JSON.stringify(post),
         headers:{
             "Content-Type": "application/json",
         }
+    });
+
+    const data = await response.json();
+    return data;
+});
+
+export const removeOnePost = createAsyncThunk("posts/removepost", async({postId}) =>{
+    const requrl = "/api/post/remove/" + postId;
+
+    const response = await fetch(requrl, {
+        method: "DELETE",
     });
 
     const data = await response.json();
@@ -91,8 +99,15 @@ const postSlice = createSlice({
         },
         [createOnePost.fulfilled]: (state, action) =>{
             state.status = "uploaded";
-            console.log(action.payload);
             state.currentpost = action.payload;
+        },
+        [removeOnePost.pending]: (state, action) =>{
+            state.status = "pending";
+            state.currentpost = null;
+        },
+        [removeOnePost.fulfilled]: (state, action) =>{
+            state.status = "idle";
+            state.posts = [];
         },
     },
 });

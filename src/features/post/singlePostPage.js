@@ -44,7 +44,7 @@ export const SinglePostPage = ({ match }) => {
         content = (
             <>
                 <Grid>
-                    <Grid.Column width={13}>
+                    <Grid.Column width={10}>
                         <Header as="h4">
                             {post.title} By {post.author} on{" "}
                             {format(
@@ -53,10 +53,15 @@ export const SinglePostPage = ({ match }) => {
                             )}
                         </Header>
                     </Grid.Column>
-                    <Grid.Column width={3} textAlign="right">
+                    <Grid.Column width={6} textAlign="right">
                         <Button disabled={unauthedUser}>
                             <Link to={`/post/e/${post._id}`} className="button">
                                 Edit Post
+                            </Link>
+                        </Button>
+                        <Button disabled={unauthedUser}>
+                            <Link to={`/post/r/${post._id}`} className="button">
+                                Remove Post
                             </Link>
                         </Button>
                     </Grid.Column>
@@ -71,7 +76,9 @@ export const SinglePostPage = ({ match }) => {
         <>
             <NavigationBar />
             <Container>
-                <Segment style={{ backgroundColor, marginBottom: "14px"}}>{content}</Segment>
+                <Segment style={{ backgroundColor, marginBottom: "14px" }}>
+                    {content}
+                </Segment>
             </Container>
         </>
     );

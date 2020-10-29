@@ -8,6 +8,7 @@ import { LogoutUserPage } from "./features/auth/logout";
 import { SinglePostPage } from "./features/post/singlePostPage";
 import { fetchAuthUser, resetCheckByTime } from "./features/auth/authSlice";
 import { PostEditorPage } from "./features/post/postEditorPage";
+import { RemoveOnePost } from "./features/post/removePostPage";
 
 function App() {
     let loggedin = false;
@@ -21,10 +22,8 @@ function App() {
     }, [authStatus, dispatch]);
 
     if (authStatus === "loaded") {
-        console.log(user.userId);
         if (user.userId !== null) {
             loggedin = true;
-            console.log("logged in");
         }
 
         dispatch(resetCheckByTime());
@@ -38,6 +37,9 @@ function App() {
                 </Route>
                 <Route exact path="/post/e/:postId">
                     <PostEditorPage update={true} />
+                </Route>
+                <Route exact path="/post/r/:postId">
+                    <RemoveOnePost />
                 </Route>
                 <Route exact path="/post/:postId" component={SinglePostPage} />
 
