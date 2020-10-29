@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginAuthUser } from "./authSlice";
 import { NavigationBar } from "../../components/navigation";
 import {
@@ -19,8 +19,6 @@ export const LoginUserPage = () => {
 
     /* Globally stored state */
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.auth.user);
-    const authStatus = useSelector((state) => state.auth.status);
 
     /* Update field input change */
     const onUsernameChanged = (e) => setUsername(e.target.value);

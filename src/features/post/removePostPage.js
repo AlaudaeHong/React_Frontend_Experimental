@@ -19,7 +19,7 @@ export const RemoveOnePost = () => {
             setRequestStatus("pending");
             dispatch(removeOnePost({ postId }));
         }
-    }, [postStatus, dispatch]);
+    }, [postId, postStatus, requestStatus, dispatch]);
 
     if (postStatus === "idle") {
         content = <Redirect to="/home" />;

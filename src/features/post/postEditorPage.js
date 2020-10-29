@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
-import { Link, Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { Grid, Form, Button } from "semantic-ui-react";
-import { format } from "date-fns";
 
 import { NavigationBar } from "../../components/navigation";
 import { fetchOnePost, updateOnePost, createOnePost } from "./postSlice";
@@ -13,6 +12,7 @@ export const PostEditorPage = ({ update }) => {
     const { postId } = useParams();
 
     const post = useSelector((state) => state.posts.currentpost);
+    const user = useSelector((state) => state.auth.user);
 
     const [markdownContent, setMarkdownContent] = useState("");
     const [checkStatus, setCheckStatus] = useState("pending");
@@ -24,6 +24,10 @@ export const PostEditorPage = ({ update }) => {
     if (post && checkStatus === "pending" && update) {
         setMarkdownContent(post.content);
         setCheckStatus("succeed");
+
+        if(post.author !== user.username){
+            return(<Redirect to="/" />);
+        }
     }
 
     return (
@@ -95,7 +99,7 @@ function Editor({ postId, markdownValue, markdownOnChange, update }) {
                 console.error("Failed to get the post: ", err);
             }
         }
-    }, [RequestStatus, postId, dispatch]);
+    }, [RequestStatus, postId, update, dispatch]);
 
     if (post && RequestStatus === "pending" && update) {
         setTitle(post.title);

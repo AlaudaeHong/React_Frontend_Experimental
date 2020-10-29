@@ -36,10 +36,14 @@ function App() {
                     <PostEditorPage update={false} />
                 </Route>
                 <Route exact path="/post/e/:postId">
-                    <PostEditorPage update={true} />
+                    {loggedin ? (
+                        <PostEditorPage update={true} />
+                    ) : (
+                        <LoginUserPage />
+                    )}
                 </Route>
                 <Route exact path="/post/r/:postId">
-                    <RemoveOnePost />
+                    {loggedin ? <RemoveOnePost /> : <LoginUserPage />}
                 </Route>
                 <Route exact path="/post/:postId" component={SinglePostPage} />
 

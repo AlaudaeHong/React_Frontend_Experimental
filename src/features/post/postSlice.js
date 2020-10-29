@@ -33,7 +33,8 @@ export const updateOnePost = createAsyncThunk("posts/updatepost", async({postId,
         }
     });
 
-    return null;
+    const data = await response.json();
+    return data;
 });
 
 export const createOnePost = createAsyncThunk("posts/createpost", async({post})=>{

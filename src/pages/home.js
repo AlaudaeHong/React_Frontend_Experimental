@@ -6,9 +6,7 @@ import {
     Container,
     Message,
     Menu,
-    Button,
 } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 import { NavigationBar } from "../components/navigation";
 import { PostsList } from "../features/post/postList";
 import { BlockStyle } from "../style/style.json";
