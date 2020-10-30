@@ -17,6 +17,7 @@ export const LogoutUserPage = () => {
         dispatch(logoutAuthUser());
     }, [authStatus, dispatch]);
 
+    // Once finished the logout
     if (authStatus === "idle") {
         content = <Redirect to="/" />
     } else {

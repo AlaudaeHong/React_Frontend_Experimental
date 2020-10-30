@@ -61,7 +61,7 @@ function HomeIntro() {
                 technology (The beauty of "One page works everywhere"). This
                 website will be my homepage as well as my playground to learn
                 and experiment frontend (React.js for now) and backend
-                (Express.js for now) technicals.
+                (Express.js for now) technology.
             </Segment>
         </>
     );

@@ -21,6 +21,7 @@ export const PostEditorPage = ({ update }) => {
         setMarkdownContent(e.target.value);
     };
 
+    // State will only be updated once
     if (post && checkStatus === "pending" && update) {
         setMarkdownContent(post.content);
         setCheckStatus("succeed");
@@ -107,8 +108,8 @@ function Editor({ postId, markdownValue, markdownOnChange, update }) {
         setRequestStatus("succeeded");
     }
 
+    // If succeed, redirect to singlePostPage
     if (SubmitStatus === "pending" && postStatus === "uploaded") {
-        console.log(post);
         let redirecturl = "/post/" + post._id;
         return <Redirect to={redirecturl} />;
     }
@@ -142,13 +143,9 @@ const catalogOptions = [
         text: "Others",
         value: "Others",
     },
-    {
-        key: "none",
-        text: "none",
-        value: "none",
-    },
 ];
 
+// Editor Template
 function EditorBase({
     titleValue,
     titleOnChange,
