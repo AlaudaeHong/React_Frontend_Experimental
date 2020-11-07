@@ -15,52 +15,64 @@ export const fetchPosts = createAsyncThunk("posts/list", async () => {
     return data;
 });
 
-export const fetchOnePost = createAsyncThunk("posts/viewpost", async (postid) => {
-    const requrl = "/api/post/" + postid;
-    const response = await fetch(requrl);
+export const fetchOnePost = createAsyncThunk(
+    "posts/viewpost",
+    async (postid) => {
+        const requrl = "/api/post/" + postid;
+        const response = await fetch(requrl);
 
-    const data = await response.json();
-    return data;
-});
+        const data = await response.json();
+        return data;
+    }
+);
 
-export const updateOnePost = createAsyncThunk("posts/updatepost", async({postId, post})=>{
-    const requrl = "/api/post/" + postId;
-    const response = await fetch(requrl, {
-        method: "POST",
-        body: JSON.stringify(post),
-        headers:{
-            "Content-Type": "application/json",
-        }
-    });
+export const updateOnePost = createAsyncThunk(
+    "posts/updatepost",
+    async ({ postId, post }) => {
+        const requrl = "/api/post/" + postId;
+        const response = await fetch(requrl, {
+            method: "POST",
+            body: JSON.stringify(post),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
 
-    const data = await response.json();
-    return data;
-});
+        const data = await response.json();
+        return data;
+    }
+);
 
-export const createOnePost = createAsyncThunk("posts/createpost", async({post})=>{
-    const requrl = "/api/post/upload";
-    const response = await fetch(requrl, {
-        method: "POST",
-        body: JSON.stringify(post),
-        headers:{
-            "Content-Type": "application/json",
-        }
-    });
+export const createOnePost = createAsyncThunk(
+    "posts/createpost",
+    async ({ post }) => {
+        const requrl = "/api/post/upload";
+        const response = await fetch(requrl, {
+            method: "POST",
+            body: JSON.stringify(post),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
 
-    const data = await response.json();
-    return data;
-});
+        const data = await response.json();
+        return data;
+    }
+);
 
-export const removeOnePost = createAsyncThunk("posts/removepost", async({postId}) =>{
-    const requrl = "/api/post/remove/" + postId;
+export const removeOnePost = createAsyncThunk(
+    "posts/removepost",
+    async ({ postId }) => {
+        const requrl = "/api/post/remove/" + postId;
 
-    const response = await fetch(requrl, {
-        method: "DELETE",
-    });
+        const response = await fetch(requrl, {
+            method: "DELETE",
+        });
 
-    const data = await response.json();
-    return data;
-});
+        const data = await response.json();
+        return data;
+    }
+);
 
 const postSlice = createSlice({
     name: "posts",
@@ -69,11 +81,12 @@ const postSlice = createSlice({
     extraReducers: {
         [fetchPosts.pending]: (state, action) => {
             state.status = "loading";
+            state.posts = [];
         },
         [fetchPosts.fulfilled]: (state, action) => {
             state.status = "succeeded";
             // Add any fetched posts to the array
-            state.posts = state.posts.concat(action.payload);
+            state.posts = action.payload;
         },
         [fetchPosts.rejected]: (state, action) => {
             state.status = "failed";
@@ -88,25 +101,25 @@ const postSlice = createSlice({
             // Add any fetched posts to the array
             state.currentpost = action.payload;
         },
-        [updateOnePost.pending]: (state, action) =>{
+        [updateOnePost.pending]: (state, action) => {
             state.status = "pending";
         },
-        [updateOnePost.fulfilled]: (state, action) =>{
+        [updateOnePost.fulfilled]: (state, action) => {
             state.status = "uploaded";
         },
-        [createOnePost.pending]: (state, action) =>{
+        [createOnePost.pending]: (state, action) => {
             state.status = "pending";
             state.currentpost = null;
         },
-        [createOnePost.fulfilled]: (state, action) =>{
+        [createOnePost.fulfilled]: (state, action) => {
             state.status = "uploaded";
             state.currentpost = action.payload;
         },
-        [removeOnePost.pending]: (state, action) =>{
+        [removeOnePost.pending]: (state, action) => {
             state.status = "pending";
             state.currentpost = null;
         },
-        [removeOnePost.fulfilled]: (state, action) =>{
+        [removeOnePost.fulfilled]: (state, action) => {
             state.status = "idle";
             state.posts = [];
         },

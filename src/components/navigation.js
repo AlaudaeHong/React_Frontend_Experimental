@@ -55,6 +55,7 @@ export const NavigationBar = () => {
                 </Menu.Item>
                 <Menu.Item name="home" href="/" />
                 <Menu.Item name="about" href="/about" />
+                <Menu.Item name="files" href="/file" />
                 <Menu.Item name="experimental" href="/" disabled />
                 <Menu.Item name="hobby" href="/" disabled />
                 <Menu.Item>

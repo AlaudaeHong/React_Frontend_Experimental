@@ -9,6 +9,7 @@ import { SinglePostPage } from "./features/post/singlePostPage";
 import { fetchAuthUser, resetCheckByTime } from "./features/auth/authSlice";
 import { PostEditorPage } from "./features/post/postEditorPage";
 import { RemoveOnePost } from "./features/post/removePostPage";
+import { FileListPage } from "./features/file/fileListPage";
 
 function App() {
     let loggedin = false;
@@ -46,6 +47,12 @@ function App() {
                     {loggedin ? <RemoveOnePost /> : <LoginUserPage />}
                 </Route>
                 <Route exact path="/post/:postId" component={SinglePostPage} />
+
+                <Route exact path="/file/a"></Route>
+                <Route exact path="/file/r/:fileId"></Route>
+                <Route path="/file">
+                    <FileListPage />
+                </Route>
 
                 <Route path="/login">
                     {loggedin ? <Redirect to="/" /> : <LoginUserPage />}
