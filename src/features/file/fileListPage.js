@@ -1,44 +1,66 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-    Segment,
-    Header,
-    Grid,
     Card,
     Image,
     Button,
+    Dimmer,
     Container,
+    Grid,
+    Rail,
 } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 import { BlockStyle } from "../../style/style.json";
 import { NavigationBar } from "../../components/navigation";
 
-import { fetchFileMatas, selectAllFiles } from "./fileSlice";
+import { fetchFileMatas, selectAllFiles, removeOneFile } from "./fileSlice";
+import { FileUploadSegment } from "./uploadFile";
 
-import {
-    assembleGetFileUrl,
-} from "../../utils/fileHelper";
+import { assembleGetFileUrl } from "../../utils/fileHelper";
 
 const backgroundColor = BlockStyle.backgroundColor;
 
 const FileExcerpt = ({ file }) => {
-    const fileURL = assembleGetFileUrl(file._id);
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.auth.user);
 
-    return (
-        <Card key={file._id}>
+    const [requestStatus, setRequestStatus] = useState("idle");
+    const [dimStatus, setDimStatus] = useState(false);
+
+    var notAuthed = true;
+
+    const onRemoveClicked = async () => {
+        if (requestStatus === "idle") {
+            setRequestStatus("pending");
+            setDimStatus(true);
+            await dispatch(removeOneFile({ fid: file._id }));
+        }
+    };
+
+    if (user && user.userId) {
+        notAuthed = false;
+    }
+
+    const fileURL = assembleGetFileUrl(file._id);
+    var cardContent = (
+        <Dimmer.Dimmable
+            as={Card}
+            dimmed={dimStatus}
+            key={file._id}
+            style={{ backgroundColor }}
+        >
             <Card.Content>
                 <Image src={fileURL} size="medium" />
+                url: {fileURL}
             </Card.Content>
             <Card.Content extra>
-                <Button>
-                    {/* To be modified */}
-                    <Link to="" className="button">
-                        Remove File
-                    </Link>
+                <Button onClick={onRemoveClicked} disabled={notAuthed}>
+                    Remove File
                 </Button>
             </Card.Content>
-        </Card>
+        </Dimmer.Dimmable>
     );
+
+    return <>{cardContent}</>;
 };
 
 export const FileListPage = () => {
@@ -69,9 +91,16 @@ export const FileListPage = () => {
     return (
         <>
             <NavigationBar />
-            <Container>
-                <Card.Group>{content}</Card.Group>
-            </Container>
+            <Grid centered columns={2}>
+                <Grid.Column>
+                    <Rail position="left">
+                        <FileUploadSegment />
+                    </Rail>
+                    <Container>
+                        <Card.Group>{content}</Card.Group>
+                    </Container>
+                </Grid.Column>
+            </Grid>
         </>
     );
 };

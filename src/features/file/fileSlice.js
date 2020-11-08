@@ -23,9 +23,6 @@ export const uploadOneFile = createAsyncThunk(
         const response = await fetch(requrl, {
             method: "POST",
             body: formdata,
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
         });
 
         const data = await response.json();
