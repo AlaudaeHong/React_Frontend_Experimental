@@ -5,9 +5,7 @@ import {
     Image,
     Button,
     Dimmer,
-    Container,
     Grid,
-    Rail,
 } from "semantic-ui-react";
 import { BlockStyle } from "../../style/style.json";
 import { NavigationBar } from "../../components/navigation";
@@ -46,11 +44,15 @@ const FileExcerpt = ({ file }) => {
             as={Card}
             dimmed={dimStatus}
             key={file._id}
-            style={{ backgroundColor }}
+            style={{ backgroundColor, height: "300px" }}
         >
             <Card.Content>
-                <Image src={fileURL} size="medium" />
-                url: {fileURL}
+                <Image
+                    src={fileURL}
+                    size="medium"
+                    style={{ maxHeight: "200px", width: "auto" }}
+                />
+                {fileURL}
             </Card.Content>
             <Card.Content extra>
                 <Button onClick={onRemoveClicked} disabled={notAuthed}>
@@ -91,14 +93,12 @@ export const FileListPage = () => {
     return (
         <>
             <NavigationBar />
-            <Grid centered columns={2}>
-                <Grid.Column>
-                    <Rail position="left">
-                        <FileUploadSegment />
-                    </Rail>
-                    <Container>
-                        <Card.Group>{content}</Card.Group>
-                    </Container>
+            <Grid celled>
+                <Grid.Column width={3} textAlign="left">
+                    <FileUploadSegment />
+                </Grid.Column>
+                <Grid.Column width={12}>
+                    <Card.Group>{content}</Card.Group>
                 </Grid.Column>
             </Grid>
         </>

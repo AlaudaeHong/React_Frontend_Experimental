@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
     files: [],
     currentFile: null,
+    fileInSession: [],
     status: "idle",
     error: null,
 };
@@ -54,7 +55,7 @@ const fileSlice = createSlice({
         },
         [fetchFileMatas.fulfilled]: (state, action) => {
             state.status = "succeeded";
-            state.files = state.files.concat(action.payload);
+            state.files = action.payload;
         },
         [uploadOneFile.pending]: (state, action) => {
             state.status = "pending";
@@ -63,6 +64,7 @@ const fileSlice = createSlice({
         [uploadOneFile.fulfilled]: (state, action) => {
             state.status = "idle";
             state.currentFile = action.payload;
+            state.fileInSession = state.fileInSession.concat(action.payload);
         },
         [removeOneFile.pending]: (state, action) => {
             state.status = "pending";
@@ -71,6 +73,10 @@ const fileSlice = createSlice({
         [removeOneFile.fulfilled]: (state, action) => {
             state.status = "idle";
             state.files = [];
+
+            state.fileInSession = state.fileInSession.filter(
+                (file) => file._id !== action.payload._id
+            );
         },
     },
 });

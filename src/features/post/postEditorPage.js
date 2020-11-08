@@ -7,6 +7,8 @@ import { Grid, Form, Button } from "semantic-ui-react";
 
 import { NavigationBar } from "../../components/navigation";
 import { fetchOnePost, updateOnePost, createOnePost } from "./postSlice";
+import { FileUploadSegment } from "../file/uploadFile";
+import { BlockStyle } from "../../style/style.json";
 
 export const PostEditorPage = ({ update }) => {
     const { postId } = useParams();
@@ -26,8 +28,8 @@ export const PostEditorPage = ({ update }) => {
         setMarkdownContent(post.content);
         setCheckStatus("succeed");
 
-        if(post.author !== user.username){
-            return(<Redirect to="/" />);
+        if (post.author !== user.username) {
+            return <Redirect to="/" />;
         }
     }
 
@@ -35,7 +37,10 @@ export const PostEditorPage = ({ update }) => {
         <>
             <NavigationBar />
             <Grid celled="internally">
-                <Grid.Column width={8}>
+                <Grid.Column width={3}>
+                    <FileUploadSegment />
+                </Grid.Column>
+                <Grid.Column width={6}>
                     <Editor
                         postId={postId}
                         markdownValue={markdownContent}
@@ -43,7 +48,7 @@ export const PostEditorPage = ({ update }) => {
                         update={update}
                     />
                 </Grid.Column>
-                <Grid.Column width={8}>
+                <Grid.Column width={7}>
                     <ReactMarkdown plugins={[gfm]} children={markdownContent} />
                 </Grid.Column>
             </Grid>
@@ -155,6 +160,7 @@ function EditorBase({
     markdownOnChange,
     onSubitClick,
 }) {
+    const backgroundColor = BlockStyle.backgroundColor;
     return (
         <>
             <Form>
@@ -174,7 +180,7 @@ function EditorBase({
                             <Form.Field>
                                 <label>Catalog</label>
                                 <Form.Dropdown
-                                    placeholder="Select a catalog"
+                                    placeholder="catalog"
                                     fluid
                                     selection
                                     options={catalogOptions}
@@ -203,7 +209,11 @@ function EditorBase({
                         placeholder="Tell us more"
                         value={markdownValue}
                         onChange={markdownOnChange}
-                        style={{ height: "50vh" }}
+                        style={{
+                            height: "auto",
+                            minHeight: "50vh",
+                            backgroundColor,
+                        }}
                     />
                 </Form.Field>
             </Form>
