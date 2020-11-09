@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadOneFile, removeOneFile } from "./fileSlice";
 import {
     Dimmer,
     Item,
@@ -12,6 +11,7 @@ import {
 
 import { assembleGetFileUrl } from "../../utils/fileHelper";
 import { BlockStyle } from "../../style/style.json";
+import { uploadOneFile, removeOneFile } from "./fileSlice";
 
 const backgroundColor = BlockStyle.backgroundColor;
 

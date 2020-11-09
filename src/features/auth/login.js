@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginAuthUser } from "./authSlice";
-import { NavigationBar } from "../../components/navigation";
 import {
     Button,
     Form,
@@ -11,6 +9,9 @@ import {
     Segment,
     Container,
 } from "semantic-ui-react";
+
+import { loginAuthUser } from "./authSlice";
+import { NavigationBar } from "../../components/navigation";
 
 export const LoginUserPage = () => {
     /* Local stored state */
@@ -79,7 +80,10 @@ export const LoginUserPage = () => {
                             </Segment>
                         </Form>
                         <Message>
-                            New to us? <a href="/">Let me know if want a account to play with</a>
+                            New to us?{" "}
+                            <a href="/">
+                                Let me know if want a account to play with
+                            </a>
                         </Message>
                     </Grid.Column>
                 </Grid>

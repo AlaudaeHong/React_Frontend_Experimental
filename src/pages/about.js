@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { NavigationBar } from "../components/navigation";
 import {
     Menu,
     Image,
@@ -8,9 +7,33 @@ import {
     Container,
     Segment,
 } from "semantic-ui-react";
+import ReactMarkdown from "react-markdown";
+import gfm from "remark-gfm";
+
 import { BlockStyle } from "../style/style.json";
+import { NavigationBar } from "../components/navigation";
 
 const backgroundColor = BlockStyle.backgroundColor;
+
+const BioText = `
+# Yun Hong
+
+Hi, this is Yun Hong. I am currently pursuing M.S. in ECE at CMU. My
+concentration are in system (Embedded, Networking, and
+HPC/Distributed). But I have a growing interest in web technology
+(The beauty of "One page works everywhere"). I will graduate in 2022
+Spring. I am looking for a SDE job in system/backend/frontend field
+after my graduation.
+`;
+
+const OthersText = `
+# Others
+* Github: https://github.com/AlaudaeHong
+* Linkedin: https://www.linkedin.com/in/yun-hong-3a03bb151/
+* Email: yunhong@[school email]
+* Backend Repo (for this website): https://github.com/AlaudaeHong/Expressjs_Backend_Experimental
+* Frontend Repo (for this website): https://github.com/AlaudaeHong/React_Frontend_Experimental
+`;
 
 class About extends Component {
     constructor(props) {
@@ -80,17 +103,12 @@ class About extends Component {
     }
 }
 
+
+
 function Bio() {
     return (
         <>
-            <Header size="huge">Yun Hong</Header>
-            Hi, this is Yun Hong. I am currently pursuing M.S. in ECE at CMU. My
-            concentration are in system (Embedded, Networking, and
-            HPC/Distributed). But I have a growing interest in web technology
-            (The beauty of "One page works everywhere"). I will graduate in 2021
-            winter (Orginally I will graduate in 2022 Spring, but due to
-            legitimate reasons...). I am looking for a SDE job in
-            system/backend/frontend field after my graduation.
+            <ReactMarkdown plugins={[gfm]} children={BioText} />
         </>
     );
 }
@@ -99,10 +117,7 @@ function Resume() {
     return (
         <>
             <Header size="huge">Resume</Header>{" "}
-            <Image
-                src={require("../static/about/Resume1024_1.jpg")}
-                fluid
-            />
+            <Image src={require("../static/about/Resume1024_1.jpg")} fluid />
         </>
     );
 }
@@ -110,25 +125,7 @@ function Resume() {
 function Others() {
     return (
         <>
-            <Header size="huge">Others</Header>
-            <Header size="medium">GitHub</Header>
-            <p>https://github.com/AlaudaeHong</p>
-            <Header size="medium">Linkedin</Header>
-            <p>https://www.linkedin.com/in/yun-hong-3a03bb151/</p>
-            <Header size="medium">email</Header>
-            <p>yunhong@[school email]</p>
-            <Header size="medium">Backend Repo(Experss.js)</Header>
-            <p>
-                The backend that supports this website:
-                <br />
-                https://github.com/AlaudaeHong/Expressjs_Backend_Experimental
-            </p>
-            <Header size="medium">Frontend Repo(React.js)</Header>
-            <p>
-                The frontend that supports this website:
-                <br />
-                https://github.com/AlaudaeHong/React_Frontend_Experimental
-            </p>
+            <ReactMarkdown plugins={[gfm]} children={OthersText} />
         </>
     );
 }

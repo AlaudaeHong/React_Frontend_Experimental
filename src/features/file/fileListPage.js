@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-    Card,
-    Image,
-    Button,
-    Dimmer,
-    Grid,
-} from "semantic-ui-react";
+import { Card, Image, Button, Dimmer, Grid } from "semantic-ui-react";
+
 import { BlockStyle } from "../../style/style.json";
 import { NavigationBar } from "../../components/navigation";
-
 import { fetchFileMatas, selectAllFiles, removeOneFile } from "./fileSlice";
 import { FileUploadSegment } from "./uploadFile";
-
 import { assembleGetFileUrl } from "../../utils/fileHelper";
 
 const backgroundColor = BlockStyle.backgroundColor;

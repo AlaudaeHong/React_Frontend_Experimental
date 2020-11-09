@@ -10,6 +10,24 @@ import { fetchOnePost, updateOnePost, createOnePost } from "./postSlice";
 import { FileUploadSegment } from "../file/uploadFile";
 import { BlockStyle } from "../../style/style.json";
 
+const catalogOptions = [
+    {
+        key: "Tech",
+        text: "Tech",
+        value: "Tech",
+    },
+    {
+        key: "Kancolle",
+        text: "Kancolle",
+        value: "Kancolle",
+    },
+    {
+        key: "Others",
+        text: "Others",
+        value: "Others",
+    },
+];
+
 export const PostEditorPage = ({ update }) => {
     const { postId } = useParams();
 
@@ -131,24 +149,6 @@ function Editor({ postId, markdownValue, markdownOnChange, update }) {
         />
     );
 }
-
-const catalogOptions = [
-    {
-        key: "Tech",
-        text: "Tech",
-        value: "Tech",
-    },
-    {
-        key: "Kancolle",
-        text: "Kancolle",
-        value: "Kancolle",
-    },
-    {
-        key: "Others",
-        text: "Others",
-        value: "Others",
-    },
-];
 
 // Editor Template
 function EditorBase({

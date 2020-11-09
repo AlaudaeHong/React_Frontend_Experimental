@@ -13,6 +13,26 @@ import { BlockStyle } from "../style/style.json";
 
 const backgroundColor = BlockStyle.backgroundColor;
 
+function HomeIntro() {
+    return (
+        <>
+            <Message warning>
+                This is a personal website and treat it nicely
+            </Message>
+            <Segment style={{ backgroundColor }}>
+                <Header as="h3">Welcome:</Header>
+                Welcome to my page. I am currently pursuing M.S. in ECE at CMU.
+                My concentration are in system (Embedded, Networking, and
+                HPC/Distributed). But I have a growing interest in web
+                technology (The beauty of "One page works everywhere"). This
+                website will be my homepage as well as my playground to learn
+                and experiment frontend (React.js for now) and backend
+                (Express.js for now) technology.
+            </Segment>
+        </>
+    );
+}
+
 class Home extends Component {
     render() {
         return (
@@ -45,26 +65,6 @@ class Home extends Component {
             </div>
         );
     }
-}
-
-function HomeIntro() {
-    return (
-        <>
-            <Message warning>
-                This is a personal website and treat it nicely
-            </Message>
-            <Segment style={{ backgroundColor }}>
-                <Header as="h3">Welcome:</Header>
-                Welcome to my page. I am currently pursuing M.S. in ECE at CMU.
-                My concentration are in system (Embedded, Networking, and
-                HPC/Distributed). But I have a growing interest in web
-                technology (The beauty of "One page works everywhere"). This
-                website will be my homepage as well as my playground to learn
-                and experiment frontend (React.js for now) and backend
-                (Express.js for now) technology.
-            </Segment>
-        </>
-    );
 }
 
 export default Home;

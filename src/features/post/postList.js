@@ -1,12 +1,12 @@
 // Borrowed from https://github.com/reduxjs/redux-essentials-example-app/blob/checkpoint-3-postRequests/src/features/posts/PostsList.js
-
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Segment, Header, Grid } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { selectAllPosts, fetchPosts } from "./postSlice";
 import { format } from "date-fns";
+
 import { BlockStyle } from "../../style/style.json";
+import { selectAllPosts, fetchPosts } from "./postSlice";
 
 const backgroundColor = BlockStyle.backgroundColor;
 

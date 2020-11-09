@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutAuthUser } from "./authSlice";
 import { Redirect } from "react-router-dom";
-import {
-    Message,
-    Container,
-} from "semantic-ui-react";
+
+import { logoutAuthUser } from "./authSlice";
+import { Message, Container } from "semantic-ui-react";
 
 export const LogoutUserPage = () => {
     const dispatch = useDispatch();
@@ -19,12 +17,10 @@ export const LogoutUserPage = () => {
 
     // Once finished the logout
     if (authStatus === "idle") {
-        content = <Redirect to="/" />
+        content = <Redirect to="/" />;
     } else {
-        content = <Message>Logging out</Message>
+        content = <Message>Logging out</Message>;
     }
 
-    return (
-    <Container>{content}</Container>
-    );
+    return <Container>{content}</Container>;
 };

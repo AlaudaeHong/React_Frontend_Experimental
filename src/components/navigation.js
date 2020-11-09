@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Menu, Message, Dropdown, Divider, Button } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import Background from "../static/navigation/banner.jpg";
 
 export const NavigationBar = () => {

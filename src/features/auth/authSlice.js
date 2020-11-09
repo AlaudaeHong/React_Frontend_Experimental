@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-//import client from '../../utils/client';
 
 const initialState = {
     user: { userId: null, username: null },
@@ -53,14 +52,13 @@ export const registerAuthUser = createAsyncThunk(
     }
 );
 
-
 export const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
         resetCheck: (state) => {
             state.status = "idle";
-        }
+        },
     },
     extraReducers: {
         [fetchAuthUser.pending]: (state, action) => {
@@ -93,10 +91,11 @@ export const authSlice = createSlice({
 
 export const { resetCheck } = authSlice.actions;
 
-export const resetCheckByTime = () => function (dispatch) {
-    setTimeout(() => {
-        dispatch(resetCheck());
-    }, 1000 * 60 * 5);
-}
+export const resetCheckByTime = () =>
+    function (dispatch) {
+        setTimeout(() => {
+            dispatch(resetCheck());
+        }, 1000 * 60 * 5);
+    };
 
 export default authSlice.reducer;
