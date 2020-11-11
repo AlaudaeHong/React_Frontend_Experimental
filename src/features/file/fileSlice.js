@@ -3,12 +3,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
     files: [],
     currentFile: null,
-    fileInSession: [],
+    fileInSession: [],      // Flush when go to other pages
     status: "idle",
     error: null,
 };
 
-export const fetchFileMatas = createAsyncThunk("files/list", async () => {
+export const fetchFileMetas = createAsyncThunk("files/list", async () => {
     const requrl = "/api/public/";
     const response = await fetch(requrl);
 
@@ -49,11 +49,11 @@ const fileSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [fetchFileMatas.pending]: (state, action) => {
+        [fetchFileMetas.pending]: (state, action) => {
             state.status = "loading";
             state.files = [];
         },
-        [fetchFileMatas.fulfilled]: (state, action) => {
+        [fetchFileMetas.fulfilled]: (state, action) => {
             state.status = "succeeded";
             state.files = action.payload;
         },

@@ -26,8 +26,6 @@ export const loginAuthUser = createAsyncThunk("auth/login", async (user) => {
 });
 
 export const logoutAuthUser = createAsyncThunk("auth/logout", async () => {
-    console.log("logging out");
-
     const response = await fetch("/api/auth/logout", {
         method: "DELETE",
     });

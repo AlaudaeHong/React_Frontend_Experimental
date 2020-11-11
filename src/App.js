@@ -12,11 +12,11 @@ import { RemoveOnePost } from "./features/post/removePostPage";
 import { FileListPage } from "./features/file/fileListPage";
 
 function App() {
-    let loggedin = false;
-
     const dispatch = useDispatch();
     const user = useSelector((state) => state.auth.user);
     const authStatus = useSelector((state) => state.auth.status);
+
+    let loggedin = user && user.userId;
 
     useEffect(() => {
         if (authStatus === "idle") dispatch(fetchAuthUser());
@@ -33,6 +33,7 @@ function App() {
     return (
         <div className="App">
             <Switch>
+                {/* Post Related Route */}
                 <Route exact path="/post/a">
                     <PostEditorPage update={false} />
                 </Route>
@@ -48,18 +49,22 @@ function App() {
                 </Route>
                 <Route exact path="/post/:postId" component={SinglePostPage} />
 
+                {/* File Related Route */}
                 <Route exact path="/file/a"></Route>
                 <Route exact path="/file/r/:fileId"></Route>
                 <Route path="/file">
                     <FileListPage />
                 </Route>
 
+                {/* Auth Related Route */}
                 <Route path="/login">
                     {loggedin ? <Redirect to="/" /> : <LoginUserPage />}
                 </Route>
                 <Route path="/logout">
                     <LogoutUserPage />
                 </Route>
+                
+                {/* Static Content Related Route */}
                 <Route path="/about">
                     <About />
                 </Route>

@@ -4,7 +4,7 @@ import { Card, Image, Button, Dimmer, Grid } from "semantic-ui-react";
 
 import { BlockStyle } from "../../style/style.json";
 import { NavigationBar } from "../../components/navigation";
-import { fetchFileMatas, selectAllFiles, removeOneFile } from "./fileSlice";
+import { fetchFileMetas, selectAllFiles, removeOneFile } from "./fileSlice";
 import { FileUploadSegment } from "./uploadFile";
 import { assembleGetFileUrl } from "../../utils/fileHelper";
 
@@ -67,7 +67,7 @@ export const FileListPage = () => {
 
     useEffect(() => {
         if (fileStatus === "idle") {
-            dispatch(fetchFileMatas());
+            dispatch(fetchFileMetas());
         }
     }, [fileStatus, dispatch]);
 

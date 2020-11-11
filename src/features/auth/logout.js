@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import { logoutAuthUser } from "./authSlice";
 import { Message, Container } from "semantic-ui-react";
 
+// Page to sent DELETE and wait response
 export const LogoutUserPage = () => {
     const dispatch = useDispatch();
     const authStatus = useSelector((state) => state.auth.status);
