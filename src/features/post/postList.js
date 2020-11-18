@@ -28,7 +28,7 @@ const PostExcerpt = ({ post }) => {
     );
 };
 
-export const PostsList = () => {
+export const PostsList = ({catalog}) => {
     const dispatch = useDispatch();
     const posts = useSelector(selectAllPosts);
 
@@ -49,7 +49,8 @@ export const PostsList = () => {
         // Sort posts in reverse chronological order by datetime string
         const orderedPosts = posts
             .slice()
-            .sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+            .sort((a, b) => b.timestamp.localeCompare(a.timestamp))
+            .filter((post) => post.catalog.includes(catalog));
 
         content = orderedPosts.map((post) => (
             <PostExcerpt key={post._id} post={post} />
@@ -60,9 +61,6 @@ export const PostsList = () => {
 
     return (
         <>
-            <Header as="h3" dividing>
-                All Posts
-            </Header>
             <Segment.Group>{content}</Segment.Group>
         </>
     );

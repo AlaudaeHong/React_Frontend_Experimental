@@ -36,14 +36,14 @@ function HomeIntro() {
 class Home extends Component {
     render() {
         return (
-            <div className="App">
+            <div>
                 <NavigationBar />
                 <Container>
                     <Grid celled="internally">
                         <Grid.Row>
                             <Grid.Column width={13}>
                                 <HomeIntro />
-                                <PostsList />
+                                <PostsList catalog="[Tech]" />
                             </Grid.Column>
                             <Grid.Column width={3}>
                                 <Menu

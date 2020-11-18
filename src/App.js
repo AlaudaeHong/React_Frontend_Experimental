@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
+
 import Home from "./pages/home";
 import About from "./pages/about";
+import { HobbyMainPage } from "./pages/hobby";
 import { LoginUserPage } from "./features/auth/login";
 import { LogoutUserPage } from "./features/auth/logout";
 import { SinglePostPage } from "./features/post/singlePostPage";
@@ -63,13 +65,16 @@ function App() {
                 <Route path="/logout">
                     <LogoutUserPage />
                 </Route>
-                
+
                 {/* Static Content Related Route */}
                 <Route path="/about">
                     <About />
                 </Route>
                 <Route path="/home">
                     <Home />
+                </Route>
+                <Route path="/hobby">
+                    <HobbyMainPage />
                 </Route>
                 <Route path="/">
                     <Home />

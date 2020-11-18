@@ -1,30 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ReactMarkdown from "react-markdown";
-import gfm from "remark-gfm";
 import { Redirect, useParams } from "react-router-dom";
-import { Grid, Form, Button } from "semantic-ui-react";
+import { Grid, Form, Button, Ref } from "semantic-ui-react";
 
 import { NavigationBar } from "../../components/navigation";
 import { fetchOnePost, updateOnePost, createOnePost } from "./postSlice";
 import { FileUploadSegment } from "../file/uploadFile";
 import { BlockStyle } from "../../style/style.json";
+import { Markdown } from "./markdownConfig";
+
+const backgroundColor = BlockStyle.backgroundColor;
 
 const catalogOptions = [
     {
         key: "Tech",
         text: "Tech",
-        value: "Tech",
+        value: "[Tech]Tech",
+    },
+    {
+        key: "Log",
+        text: "Log",
+        value: "[Tech]Log",
+    },
+    {
+        key: "Anime",
+        text: "Anime",
+        value: "[Hobby]Anime",
+    },
+    {
+        key: "Hobby",
+        text: "Hobby",
+        value: "[Hobby]Hobby",
     },
     {
         key: "Kancolle",
         text: "Kancolle",
-        value: "Kancolle",
+        value: "[Hobby]Kancolle",
     },
     {
         key: "Others",
         text: "Others",
-        value: "Others",
+        value: "[Tech]Others",
     },
 ];
 
@@ -67,7 +83,7 @@ export const PostEditorPage = ({ update }) => {
                     />
                 </Grid.Column>
                 <Grid.Column width={7}>
-                    <ReactMarkdown plugins={[gfm]} children={markdownContent} />
+                    <Markdown children={markdownContent} />
                 </Grid.Column>
             </Grid>
         </>
@@ -160,7 +176,14 @@ function EditorBase({
     markdownOnChange,
     onSubitClick,
 }) {
-    const backgroundColor = BlockStyle.backgroundColor;
+    const textInput = useRef(null);
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Tab") {
+            e.preventDefault();
+        }
+    };
+
     return (
         <>
             <Form>
@@ -205,16 +228,19 @@ function EditorBase({
                     <label>
                         Content (Markdown Supported & Inline HTML Disabled)
                     </label>
-                    <Form.TextArea
-                        placeholder="Tell us more"
-                        value={markdownValue}
-                        onChange={markdownOnChange}
-                        style={{
-                            height: "auto",
-                            minHeight: "50vh",
-                            backgroundColor,
-                        }}
-                    />
+                    <Ref innerRef={textInput}>
+                        <Form.TextArea
+                            placeholder="Tell us more"
+                            value={markdownValue}
+                            onChange={markdownOnChange}
+                            onKeyDown={handleKeyDown}
+                            style={{
+                                height: "auto",
+                                minHeight: "50vh",
+                                backgroundColor,
+                            }}
+                        />
+                    </Ref>
                 </Form.Field>
             </Form>
         </>

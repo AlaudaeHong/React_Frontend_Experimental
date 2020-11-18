@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import { Link } from "react-router-dom";
 import { Segment, Container, Header, Button, Grid } from "semantic-ui-react";
 import { format } from "date-fns";
+import { useSelector, useDispatch } from "react-redux";
 
 import { fetchOnePost } from "./postSlice";
 import { NavigationBar } from "../../components/navigation";
 import { BlockStyle } from "../../style/style.json";
+import { Markdown } from "./markdownConfig";
 
 const backgroundColor = BlockStyle.backgroundColor;
 
@@ -67,7 +67,7 @@ export const SinglePostPage = ({ match }) => {
                     </Grid.Column>
                 </Grid>
 
-                <ReactMarkdown plugins={[gfm]} children={post.content} />
+                <Markdown plugins={[gfm]} children={post.content} />
             </>
         );
     }
