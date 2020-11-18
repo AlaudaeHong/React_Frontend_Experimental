@@ -64,7 +64,7 @@ class About extends Component {
                 <Container>
                     <Grid celled="internally">
                         <Grid.Row>
-                            <Grid.Column width={12}>
+                            <Grid.Column width={13}>
                                 <Segment
                                     size="large"
                                     style={{ backgroundColor }}
@@ -72,7 +72,7 @@ class About extends Component {
                                     {content}
                                 </Segment>
                             </Grid.Column>
-                            <Grid.Column width={4}>
+                            <Grid.Column width={3}>
                                 <Menu
                                     vertical
                                     fluid
