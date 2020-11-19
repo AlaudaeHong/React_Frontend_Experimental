@@ -8,21 +8,26 @@ import { HobbyMainPage } from "./pages/hobby";
 import { LoginUserPage } from "./features/auth/login";
 import { LogoutUserPage } from "./features/auth/logout";
 import { SinglePostPage } from "./features/post/singlePostPage";
-import { fetchAuthUser, resetCheckByTime } from "./features/auth/authSlice";
 import { PostEditorPage } from "./features/post/postEditorPage";
 import { RemoveOnePost } from "./features/post/removePostPage";
 import { FileListPage } from "./features/file/fileListPage";
+import { CustomSettingPage } from "./features/custom/customSettingPage";
+
+import { fetchAuthUser, resetCheckByTime } from "./features/auth/authSlice";
+import { fetchCustomSetting } from "./features/custom/customSettingSlice";
 
 function App() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.auth.user);
     const authStatus = useSelector((state) => state.auth.status);
+    const settingStatus = useSelector((state) => state.custom.status);
 
     let loggedin = user && user.userId;
 
     useEffect(() => {
         if (authStatus === "idle") dispatch(fetchAuthUser());
-    }, [authStatus, dispatch]);
+        if (settingStatus === "idle") dispatch(fetchCustomSetting());
+    }, [authStatus, settingStatus, dispatch]);
 
     if (authStatus === "loaded") {
         if (user.userId !== null) {
@@ -64,6 +69,10 @@ function App() {
                 </Route>
                 <Route path="/logout">
                     <LogoutUserPage />
+                </Route>
+
+                <Route path="/setting">
+                    {loggedin ? <CustomSettingPage /> : <LoginUserPage />}
                 </Route>
 
                 {/* Static Content Related Route */}

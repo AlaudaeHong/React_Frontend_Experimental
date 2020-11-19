@@ -3,8 +3,6 @@ import { Menu, Message, Dropdown, Divider, Button } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import Background from "../static/navigation/banner.jpg";
-
 export const NavigationBar = () => {
     const user = useSelector((state) => state.auth.user);
     const authStatus = useSelector((state) => state.auth.status);
@@ -13,19 +11,25 @@ export const NavigationBar = () => {
     const [username, setUsername] = useState("");
     const [authaction, setAuthAction] = useState("");
 
+    var moreOptions = <></>;
+
     useEffect(() => {
         if (authStatus === "loaded") {
             if (user.userId === null) {
                 setUsername("Guest");
                 setAuthurl("/login");
-                setAuthAction("Login");
+                setAuthAction("Log in");
             } else {
                 setUsername(user.username);
                 setAuthurl("/logout");
-                setAuthAction("Logout");
+                setAuthAction("Log out");
             }
         }
-    }, [authStatus, user.userId, user.username]);
+    }, [authStatus, user]);
+
+    if (username !== "Guest") {
+        moreOptions = <Dropdown.Item href="/setting">setting</Dropdown.Item>;
+    }
 
     return (
         <div>
@@ -33,7 +37,7 @@ export const NavigationBar = () => {
                 className="Banner"
                 style={{
                     height: "200px",
-                    backgroundImage: `url(${Background})`,
+                    backgroundImage: `url("/api/custom/banner")`,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "50% 0%" /* Center the image */,
                     backgroundSize:
@@ -72,6 +76,7 @@ export const NavigationBar = () => {
                             <Dropdown.Item href={authurl}>
                                 {authaction}
                             </Dropdown.Item>
+                            {moreOptions}
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Menu>
