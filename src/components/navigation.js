@@ -28,7 +28,7 @@ export const NavigationBar = () => {
     }, [authStatus, user]);
 
     if (username !== "Guest") {
-        moreOptions = <Dropdown.Item href="/setting">setting</Dropdown.Item>;
+        moreOptions = <Dropdown.Item href="/setting">Setting</Dropdown.Item>;
     }
 
     return (
