@@ -76,6 +76,8 @@ class About extends Component {
                                 <Menu
                                     vertical
                                     fluid
+                                    pointing
+                                    secondary
                                     style={{ backgroundColor }}
                                 >
                                     <Menu.Item
