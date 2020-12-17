@@ -119,7 +119,7 @@ function Resume() {
     return (
         <>
             <Header size="huge">Resume</Header>{" "}
-            <Image src={require("../static/about/Resume1024_1.jpg")} fluid />
+            <Image src={require("../static/about/Resume.jpg")} fluid />
         </>
     );
 }
