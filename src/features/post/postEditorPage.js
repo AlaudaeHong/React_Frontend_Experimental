@@ -7,7 +7,7 @@ import { NavigationBar } from "../../components/navigation";
 import { fetchOnePost, updateOnePost, createOnePost } from "./postSlice";
 import { FileUploadSegment } from "../file/uploadFile";
 import { BlockStyle } from "../../style/style.json";
-import { Markdown } from "./markdownConfig";
+import { Markdown } from "../../misc/markdownConfig";
 
 const backgroundColor = BlockStyle.backgroundColor;
 

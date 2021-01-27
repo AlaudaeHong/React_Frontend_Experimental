@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchOnePost } from "./postSlice";
 import { NavigationBar } from "../../components/navigation";
 import { BlockStyle } from "../../style/style.json";
-import { Markdown } from "./markdownConfig";
+import { Markdown } from "../../misc/markdownConfig";
 
 const backgroundColor = BlockStyle.backgroundColor;
 
