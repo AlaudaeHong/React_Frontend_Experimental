@@ -27,8 +27,8 @@ after my graduation.
 
 ## Education
 
--   2021-2022 **Master's** in _Electrical and Computer Engineering_ at **_CMU_**
--   2016-2020 **Bachelor's** in _Computer & System Engineering_ and _Electrical Engineering_ (Dual Degree) at **_RPI_**
+-   2021-2022 **Master's** in _Electrical and Computer Engineering_ at **_Carnegie Mellon Universiyt_**
+-   2016-2020 **Bachelor's** in _Computer & System Engineering_ and _Electrical Engineering_ (Dual Degree) at **_Renssalaer Polytechnic Institute_**
 
 ## Personal Projects
 
@@ -41,7 +41,7 @@ after my graduation.
 
 ## Course Projects (Full History)
 
--   **18613 - Intro to Computer System**:
+-   **18613 - Intro to Computer System** (C Language):
     -   **_Data Lab, Bomb Lab, and Attack Lab_**: Concept in bit manipulation, disassembling, and buffer overflow
     -   **_CacheLab_**: Implementing a cache simualtor and experimenting different r/w strategy to improve miss rate.
     -   **_MallocLab_**: Implementing a high-proformance and space-efficient memory allocator with following functions:
@@ -56,7 +56,7 @@ after my graduation.
 
 ---
 
--   **CSCI 4220 - Network Programming**
+-   **CSCI 4220 - Network Programming** (C Language)
     -   **_TFTP Server_**: A LAN TFTP Server complied with [RFC 1350](https://tools.ietf.org/html/rfc1350)
     -   **_Word Game_**: A Word Guess Game with mulitple players in LAN.
     -   **_Chat Room_**: A LAN Chat Room support:
@@ -67,7 +67,7 @@ after my graduation.
 
 ---
 
--   **ECSE 4790 - Microprocessor System**
+-   **ECSE 4790 - Microprocessor System** (C Language)
     -   **_Lab 1_**: Demonstrate serial port I/O
     -   **_Lab 2_**: Demonstrate GPIO and Timers using register or HAL library
         -   GPIO: General Perpose Input/Output
@@ -80,7 +80,7 @@ after my graduation.
 
 ---
 
--   **CSCI 4210 - Operating System**
+-   **CSCI 4210 - Operating System** (C Language)
     -   **_Homework 1_**: Cache Simulator
     -   **_Homework 2_**: Simplified Linux Shell
     -   **_Homework 3_**: Concurrent Board Game Solver
@@ -89,7 +89,7 @@ after my graduation.
 
 ---
 
--   **CSCI 4320 - Parallel Programming**
+-   **CSCI 4320 - Parallel Programming** (C Language)
     -   **_Homework 1 & Homework 2_**: Benchmarking SLA (Carry-Lookahead Adder) with/without MPI.
     -   **_Homework 3_**: Benchmarking SLA with/without p2p reduce
     -   **_Homework 4_**: Benchmarking Game of Life with mix of thread/process.
@@ -98,7 +98,7 @@ after my graduation.
 
 ---
 
--   **CSCI 4310 - Networking in the Linux Kernel**
+-   **CSCI 4310 - Networking in the Linux Kernel** (C Language)
     -   **_Homework 1 & Homework 2_**:
         -   Develop a system call to read multiply line from socket
         -   Benchmarking with user-space function call
@@ -108,7 +108,7 @@ after my graduation.
 
 ---
 
--   **ECSE 4900 - Multidisciplinary Capstone Design**
+-   **ECSE 4900 - Multidisciplinary Capstone Design** (Python/JavaScript/HTML)
     -   Write a backend server to relay p2p messages in Python
     -   Integrated in team project(Django)
 
@@ -128,17 +128,11 @@ after my graduation.
 
 | Code      | Course Name                         |
 | --------- | ----------------------------------- |
+| 18709     | Advanced Cloud Computing            |
+| 15619     | Cloud Computing                     |
+| 18741     | Computer Network                    |
 | 18749     | Build a Reliable Distributed System |
 | CSCI 4380 | Database System                     |
-`;
-
-const OthersText = `
-# Others
-* Github: https://github.com/AlaudaeHong
-* Linkedin: https://www.linkedin.com/in/yun-hong-3a03bb151/
-* Email: yunhong@[school email]
-* Backend Repo (for this website): https://github.com/AlaudaeHong/Expressjs_Backend_Experimental
-* Frontend Repo (for this website): https://github.com/AlaudaeHong/React_Frontend_Experimental
 `;
 
 class About extends Component {
