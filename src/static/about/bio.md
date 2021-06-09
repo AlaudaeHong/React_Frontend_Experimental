@@ -68,6 +68,72 @@ after my graduation.
 
 ---
 
+-   **15619 - Cloud Computing**
+
+    -   **Project 1 - Big Data Analytics**
+
+        -   Part1: Sequential Analysis
+            -   Pre-process hourly pageview statistics of Wikimedia by writing a Java code
+            -   Filter out malformed data and un-related data
+            -   Use `grep` and `awk` to filter data and count in different type
+            -   Use python's pandas and Jupyter Notebook to do a finer data process and analyze
+        -   Part2: Big Data Analysis
+            -   Invert-indexing monthly pageview statistic of Wikimedia by writing Hadoop's MapReduce
+            -   Similiar to part1, use `grep`, pandas and Jupyter Notebook to do a finer data process and analyze
+
+    -   **Project 2 - Automating and autoscaling distributed services**
+
+        -   Part1: Horizontal Scaling and Advanced Resource Scaling
+            -   Use AWS Boto(Python SDK) to automate resource provisioning and make it have load-awareness.
+            -   Use AWS AutoScaling Group to do Horizontal Scaling
+            -   Use Terraform (HashiCorp Configuration Language) to achieve the same effect as python code
+        -   Part2: Containers: Docker and Kubernetes
+            -   Deploy a Wechat replication in k8s
+            -   Use k8s to make it load-balancable, autoscalable, and fault-tolerable
+            -   Chain k8s cluster in GCP and Azure to make a bigger service
+            -   Use Mysql as main DB storage
+        -   Part3: Functions as a Service
+            -   Experience AWS, GCP, and Azure's FaaS
+            -   Experience Azure's event trigger
+            -   Experience Azure's Cognitive Search and Cognitive Computer Vision
+
+    -   **Project 3 - Storage and DBs on the cloud**
+
+        -   Part1: Files v/s Databases
+            -   Write SQL, and ORM (JDBC) to manipulate database
+            -   Write Java code to implement list and set in Redis (Key Value Storage)
+            -   Write Java code to inject and query data in HBase
+            -   Use salting and prefixing to improving data distribution between regions in HBase
+        -   Part2: Multi-threading Programming and Consistency
+            -   Write Multi-threading Java code to achieve strong consistency for one coordinator and three data store
+            -   Write Multi-threading Java code to achieve not-so-strong consistency and eventual consistency for three coordinator, each with one data store with no delay of access, with simulated delay of distency between each coordinator
+
+    -   **Project 4 - Parallel processing of large datasets**
+
+        -   Part1: Iterative Processing with Spark
+            -   Use Zeppeline Notebook to progressively programming Spark Code
+            -   Write a Spark Code with Scala to calculate Twitter User PageRank
+        -   Part2: Machine Learning on the Cloud
+            -   Skipped
+        -   Part3: Introduction to Stream Processing
+            -   Write Apache Kafka producer code to create stream of message to Samza
+            -   Use Samza to give real time recommendation to user, update user perference and driver location
+
+    -   **Team Project - Twitter Analytics Web Service**
+        -   Web-Tier only: check if an incoming transaction in a Bitcoin-like system is a legal one
+        -   Web-Tier and Storage Tier:
+            -   For both services, before injecting data into databases, use ETL to pre-process data and make it more friendly for MySQL or HBase
+            -   Create a User Recommendation System to return users more related to current user
+                -   Calculate three scores (Interaction, Hashtag, and Keywords) to determine best users
+            -   Create a service to do range query and topic words extraction
+                -   Calculate two scores (Topic and Impact) to sort the result
+            -   Web-Tier uses vertx to achieve high throughput at the front
+        -   Use VMs and k8s Cluster to host Web-Tier service, both achieve high throughput
+        -   Use VMs and AWS RDS (MySQL) to achieve high number of query per second
+        -   Both implementation achieve high availability
+
+---
+
 -   **18613 - Intro to Computer System** (C Language)
     -   **_Data Lab, Bomb Lab, and Attack Lab_**: Concept in bit manipulation, disassembling, and buffer overflow
     -   **_CacheLab_**: Implementing a cache simualtor and experimenting different r/w strategy to improve miss rate.
