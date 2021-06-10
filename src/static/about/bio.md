@@ -149,6 +149,32 @@ after my graduation.
 
 ---
 
+-   **18741 - Computer Network**
+
+    -   **Project 1 - Exploring the Wi-Fi PHY**
+
+        -   Write a Wi-Fi decoder to decode messages sends from a Wi-Fi transmitter
+        -   Level 5: Find preamble to find the start of packet
+        -   Level 4: Recover from OFDM packet
+        -   Level 3: QAM demodulation
+        -   Level 2: Inverse convolutional encoding by Viterbi Decoding
+        -   Level 1: De-interleaving
+
+    -   **Project 2 - Content Distribution**
+        -   Each server has a configuration file, and this file can be later updated
+        -   Each server will be initialized with all neighbors, and can be added later
+        -   Each server will be responsible for discover unhealth neighbors and broadcast the information to other neighbor
+        -   It requires every server in the networt to receive this message just once to avoid flooding
+        -   A server will eventually have all the distance information, and therefore make the best decision at best effort.
+
+    -   **Project 3 - HTTP Pseudo Streaming**
+        -   Implementing a HTTP1.1/HTTP1.0 server
+        -   Supported Method: `GET`
+        -   Supported Response Status: `200 OK`, `206 Partial Content`, `404 Not Found`, `500 Internal Server Error`
+        -   Supported Header: `Accept-Ranges`, `Connection`, `Content-Length`, `Content-Range`, `Content-Type`, `Date`, `Last-Modified`, `Range`
+
+---
+
 ### @**_RPI_**
 
 -   **CSCI 4220 - Network Programming** (C Language)
